@@ -73,6 +73,12 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 <label class="label">現在の設置場所<input class="field" name="location" required></label>
 <label class="label">引取希望期限<input class="field" type="date" name="deadline"></label>
 <label class="label widefield">寸法・仕様<input class="field" name="size" placeholder="例：W1200 × D600 × H700 mm"></label>
+<label class="label widefield" id="fixedAssetLabelArea" style="display:none">
+備品シール写真（固定資産番号確認用）
+<input class="field" id="fixedAssetLabelInput" type="file" accept="image/*">
+<div class="preview" id="fixedAssetLabelPreview"></div>
+<small>固定資産番号が確認できる写真を添付してください。</small>
+</label>
 <label class="label widefield">写真（最大5枚）<input class="field" id="photoInput" type="file" accept="image/*" multiple><div class="preview" id="preview"></div></label>
 <label class="label widefield">備考<textarea class="field" rows="3" name="note"></textarea></label>
 </div><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit">登録する</button></div></form></div></div>
@@ -105,7 +111,7 @@ function isDeadlineOver(x){
  var d=new Date(String(x.deadline)+"T23:59:59");
  return !isNaN(d.getTime())&&d.getTime()<Date.now();
 }
-var KEY="seijo_reuse_v5", photos=[], adminFilter="";
+var KEY="seijo_reuse_v5", photos=[], fixedAssetLabelPhoto="", adminFilter="";
 var ADMIN_EMAIL="kanzai_s@seijo.jp";
 function isAdmin(){
   var u=auth.currentUser;
@@ -275,16 +281,34 @@ document.addEventListener("click",function(e){
  if(e.target.classList.contains("release"))release(Number(e.target.dataset.id));
  if(e.target.classList.contains("delete"))removeItem(Number(e.target.dataset.id));
 });
+el("newForm").elements.managementType.addEventListener("change",function(){
+  var area=el("fixedAssetLabelArea");
+  if(area) area.style.display=this.value==="fixed"?"block":"none";
+  if(this.value!=="fixed"){
+    fixedAssetLabelPhoto="";
+    if(el("fixedAssetLabelPreview")) el("fixedAssetLabelPreview").innerHTML="";
+  }
+});
+
+el("fixedAssetLabelInput").addEventListener("change",async function(e){
+  var f=e.target.files[0];
+  if(!f)return;
+  try{
+    fixedAssetLabelPhoto=await resize(f);
+    el("fixedAssetLabelPreview").innerHTML='<img src="'+fixedAssetLabelPhoto+'">';
+  }catch(err){}
+});
+
 el("photoInput").addEventListener("change",async function(e){photos=[];var fs=Array.prototype.slice.call(e.target.files,0,5);for(var i=0;i<fs.length;i++){try{photos.push(await resize(fs[i]))}catch(err){}}el("preview").innerHTML=photos.map(function(p){return '<img src="'+p+'">'}).join("")});
 el("newForm").addEventListener("submit",function(e){
  e.preventDefault();
  var f=e.target.elements,id=Date.now();
  var item={id:id,name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,
-managementType:f.managementType.value,dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
+managementType:f.managementType.value,fixedAssetLabelPhoto:(f.managementType.value==="fixed"?fixedAssetLabelPhoto:""),dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
  var approx=JSON.stringify(item).length;
  if(approx>3500000){alert("写真データが大きすぎます。写真枚数を減らすか、より小さい画像を使用してください。");return;}
  itemsRef.child(String(id)).set(item).then(function(){
-   e.target.reset();photos=[];close("newModal");alert("備品を登録しました。");
+   e.target.reset();photos=[];fixedAssetLabelPhoto="";if(el("fixedAssetLabelPreview"))el("fixedAssetLabelPreview").innerHTML="";if(el("fixedAssetLabelArea"))el("fixedAssetLabelArea").style.display="none";close("newModal");alert("備品を登録しました。");
  }).catch(function(err){console.error(err);alert("備品を登録できませんでした："+(err.message||err.code));});
 });
 el("requestForm").addEventListener("submit",function(e){
