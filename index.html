@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>成城学園 備品REUSE</title>
+<style>
+:root{--g:#164f38;--g2:#0f3b2a;--bg:#f5f6f2;--line:#dfe4de;--text:#202822;--muted:#68736b;--white:#fff;--amber:#9a6b00}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif}
+button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}
+header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+.head{max-width:1180px;margin:auto;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.brand small{color:var(--muted)}.brand h1{margin:2px 0;font-size:25px;color:var(--g2)}.brand p{margin:0;color:var(--muted);font-size:13px}
+.actions{display:flex;gap:8px}.btn{border:0;border-radius:10px;padding:11px 14px;background:var(--g);color:white;font-weight:700}.btn.secondary{background:#e8eee9;color:var(--g2)}.btn.outline{background:white;color:var(--g);border:1px solid var(--g)}.btn.danger{background:#7d3939}
+main{max-width:1180px;margin:auto;padding:18px}.hero{background:linear-gradient(120deg,#164f38,#286a4d);color:white;border-radius:18px;padding:22px;margin-bottom:16px}.hero h2{margin:0 0 7px;font-size:25px}.hero p{margin:0;opacity:.9}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.stat{background:white;border:1px solid var(--line);border-radius:13px;padding:14px}.stat b{display:block;font-size:26px;color:var(--g)}.stat span{font-size:12px;color:var(--muted)}
+.filters{display:grid;grid-template-columns:2fr 1fr 1fr;gap:9px;margin:15px 0}.field{width:100%;border:1px solid #ccd5cd;border-radius:10px;padding:12px;background:white;font-size:16px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden;box-shadow:0 2px 8px #00000008}.pic{height:190px;background:#e8ece8;display:flex;align-items:center;justify-content:center;font-size:50px}.pic img{width:100%;height:100%;object-fit:cover}.body{padding:14px}.status{display:inline-block;border-radius:99px;padding:5px 9px;background:#eaf1ec;color:var(--g);font-size:12px;font-weight:700}.status.wait{background:#fff4d6;color:#795600}.status.talk{background:#e7eef8;color:#315b8c}.status.done{background:#eee;color:#666}.body h3{margin:9px 0 5px}.meta{font-size:13px;color:#5d6860;line-height:1.75}.body .btn{width:100%;margin-top:10px}
+.overlay{display:none;position:fixed;inset:0;background:#0008;z-index:50;align-items:center;justify-content:center;padding:15px}.overlay.open{display:flex}.modal{background:white;border-radius:16px;width:min(720px,100%);max-height:92vh;overflow:auto;padding:19px}.modal.wide{width:min(1080px,100%)}.modal h2{margin-top:0}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.label{display:block;font-size:13px;font-weight:700}.label .field{margin-top:5px;font-weight:400}.widefield{grid-column:1/-1}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.preview{display:flex;gap:7px;overflow:auto;margin-top:8px}.preview img{width:105px;height:82px;object-fit:cover;border-radius:8px;border:1px solid var(--line)}.notice{background:#fff8dc;border:1px solid #eadb9b;border-radius:10px;padding:10px;font-size:13px;margin:10px 0}.adminItem{border:1px solid var(--line);border-radius:12px;padding:13px;margin:10px 0}.adminItem h3{margin:0 0 8px}.requests{margin-top:10px}.req{background:#f4f7f4;border-left:4px solid #789481;border-radius:7px;padding:10px;margin:7px 0}.adminInfo{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.adminInfo div{background:#f6f7f5;padding:8px;border-radius:7px;font-size:13px}.adminInfo b{display:block;color:var(--muted);font-size:11px}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
+@media(max-width:800px){.head{align-items:flex-start}.brand p{display:none}.actions{flex-direction:column}.actions .btn{padding:9px 10px}.stats{grid-template-columns:1fr 1fr}.filters,.cards,.grid2,.adminInfo{grid-template-columns:1fr}.widefield{grid-column:auto}.pic{height:160px}.hero{padding:18px}.hero h2{font-size:21px}}
+</style>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。</p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
+<main>
+<section class="hero"><h2>捨てる前に、次の使い手へ。</h2><p>学園内で不要になった備品を登録し、必要な部署へつなぐためのリユースサイトです。</p></section>
+<section id="firebaseDiag" style="background:#fff;border:1px solid #dfe4de;border-radius:12px;padding:12px 14px;margin-bottom:14px">
+  <b>共通データベース：</b><span id="connState">接続確認中...</span>
+  <div id="connDetail" style="font-size:12px;color:#68736b;margin-top:4px"></div>
+</section>
+<section class="stats"><div class="stat"><b id="nOpen">0</b><span>募集中</span></div><div class="stat"><b id="nWait">0</b><span>希望受付あり</span></div><div class="stat"><b id="nTalk">0</b><span>交渉中</span></div><div class="stat"><b id="nDone">0</b><span>リユース成立</span></div></section>
+<section class="filters"><input id="search" class="field" placeholder="品名・部署・設置場所から検索"><select id="category" class="field"><option value="">すべてのカテゴリー</option><option>机・テーブル</option><option>椅子</option><option>収納</option><option>電化製品</option><option>教育・事務用品</option><option>その他</option></select><select id="statusFilter" class="field"><option value="">すべての状態</option><option>募集中</option><option>希望受付あり</option><option>交渉中</option><option>譲渡決定</option><option>引渡済</option></select></section>
+<section id="cards" class="cards"></section>
+</main><footer>成城学園 備品REUSE｜管財課</footer>
+
+<div class="overlay" id="newModal"><div class="modal"><h2>不要備品を登録</h2><div class="notice">iPad・iPhoneでは「写真を選択」からカメラ撮影または写真ライブラリを利用できます。最大5枚。</div>
+<form id="newForm"><div class="grid2">
+<label class="label">品名<input class="field" name="name" required></label>
+<label class="label">カテゴリー<select class="field" name="category"><option>机・テーブル</option><option>椅子</option><option>収納</option><option>電化製品</option><option>教育・事務用品</option><option>その他</option></select></label>
+<label class="label">数量<input class="field" type="number" min="1" value="1" name="qty" required></label>
+<label class="label">状態<select class="field" name="condition"><option>良好</option><option>使用感あり</option><option>要確認</option></select></label>
+<label class="label">出品部署<input class="field" name="dept" required></label>
+<label class="label">担当者<input class="field" name="person" required></label>
+<label class="label">現在の設置場所<input class="field" name="location" required></label>
+<label class="label">引取希望期限<input class="field" type="date" name="deadline"></label>
+<label class="label widefield">寸法・仕様<input class="field" name="size" placeholder="例：W1200 × D600 × H700 mm"></label>
+<label class="label widefield">写真（最大5枚）<input class="field" id="photoInput" type="file" accept="image/*" multiple><div class="preview" id="preview"></div></label>
+<label class="label widefield">備考<textarea class="field" rows="3" name="note"></textarea></label>
+</div><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit">登録する</button></div></form></div></div>
+
+<div class="overlay" id="detailModal"><div class="modal" id="detailContent"></div></div>
+<div class="overlay" id="requestModal"><div class="modal"><h2>譲受希望</h2><form id="requestForm"><input type="hidden" name="itemId"><label class="label">希望部署<input class="field" name="dept" required></label><label class="label">担当者<input class="field" name="person" required></label><label class="label">希望数量<input class="field" type="number" min="1" value="1" name="qty" required></label><label class="label">コメント<textarea class="field" rows="3" name="note"></textarea></label><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn">譲受希望を送信</button></div></form></div></div>
+<div class="overlay" id="loginModal"><div class="modal"><h2>管財課 管理者認証</h2><p>管理画面を開くには管理者パスワードを入力してください。</p><form id="loginForm"><input class="field" type="password" name="password" placeholder="管理者パスワード" required><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn">ログイン</button></div></form><div class="notice">デモ用パスワード：<b>kanzai2026</b><br>本番ではサーバー側の認証へ変更します。</div></div></div>
+<div class="overlay" id="adminModal"><div class="modal wide"><h2>管財課 管理画面</h2><div class="row"><button class="btn secondary" data-af="">全案件</button><button class="btn secondary" data-af="希望受付あり">希望受付あり</button><button class="btn secondary" data-af="交渉中">交渉中</button><button class="btn secondary" data-af="引渡済">引渡済</button><button class="btn secondary close">閉じる</button></div><div id="adminList"></div></div></div>
+
+<script>
+(function(){
+"use strict";
+var KEY="seijo_reuse_v5", PASS="kanzai2026", photos=[], adminFilter="";
+var firebaseConfig={
+ apiKey:"AIzaSyD9SlPQP4HzSftvCEsSqrIJa9Jy_64CF7I",
+ authDomain:"eng-copilot-414507.firebaseapp.com",
+ databaseURL:"https://eng-copilot-414507-default-rtdb.asia-southeast1.firebasedatabase.app",
+ projectId:"eng-copilot-414507",
+ storageBucket:"eng-copilot-414507.firebasestorage.app",
+ messagingSenderId:"34003320906",
+ appId:"1:34003320906:web:5c4befdc1fb24273d426b3"
+};
+if(typeof firebase==="undefined"){
+ document.addEventListener("DOMContentLoaded",function(){
+   var st=document.getElementById("connState"),dt=document.getElementById("connDetail");
+   if(st){st.textContent="SDK読込エラー";st.style.color="#9a2f2f"}
+   if(dt)dt.textContent="Firebase SDKを読み込めません。学園PCのWebフィルタ等で gstatic.com が制限されている可能性があります。";
+ });
+ throw new Error("Firebase SDK not loaded");
+}
+firebase.initializeApp(firebaseConfig);
+var db=firebase.database(), auth=firebase.auth(), itemsRef=db.ref("reuse/items");
+var seed=[
+{id:101,name:"会議用チェア",category:"椅子",qty:10,condition:"良好",dept:"法人事務局",person:"佐藤",location:"法人事務局棟",deadline:"2026-10-31",size:"W500×D520×H780",note:"10脚まとめての引取りを優先",status:"希望受付あり",photos:[],requests:[{id:1,dept:"総務課",person:"山田",qty:10,note:"会議室で使用希望",date:"2026/9/17",selected:false},{id:2,dept:"学生課",person:"鈴木",qty:5,note:"5脚希望",date:"2026/9/17",selected:false}]},
+{id:102,name:"書庫キャビネット",category:"収納",qty:2,condition:"使用感あり",dept:"大学事務局",person:"高橋",location:"大学2号館",deadline:"2026-10-15",size:"W900×D450×H1800",note:"搬出経路要確認",status:"交渉中",photos:[],requests:[{id:3,dept:"経理課",person:"田中",qty:2,note:"",date:"2026/9/16",selected:true}]},
+{id:103,name:"折りたたみテーブル",category:"机・テーブル",qty:4,condition:"良好",dept:"管財課",person:"橋本",location:"法人事務局棟倉庫",deadline:"2026-11-15",size:"W1800×D450×H700",note:"キャスター付き",status:"募集中",photos:[],requests:[]}
+];
+var items=[], dbListenerStarted=false;
+
+/* v5.4: UI操作関数を復旧 */
+function el(id){ return document.getElementById(id); }
+function open(id){ var x=el(id); if(x)x.classList.add("open"); }
+function close(id){ var x=el(id); if(x)x.classList.remove("open"); }
+
+/* Firebaseへ現在の一覧を保存 */
+function save(){
+ var obj={};
+ items.forEach(function(x){ obj[String(x.id)]=x; });
+ return itemsRef.set(obj).then(function(){
+   var d=el("connDetail");
+   if(d)d.textContent="Firebaseへの保存に成功しました。最終保存："+new Date().toLocaleTimeString("ja-JP");
+ }).catch(function(e){
+   console.error("Firebase write error:",e);
+   setDiag("保存エラー",(e.code||"error")+"："+(e.message||"保存できませんでした。"),true);
+   throw e;
+ });
+}
+
+function setDiag(a,b,bad){
+ var st=document.getElementById("connState"),dt=document.getElementById("connDetail");
+ if(st){st.textContent=a;st.style.color=bad?"#9a2f2f":"#164f38"}
+ if(dt)dt.textContent=b||"";
+}
+function startDatabase(user){
+ if(dbListenerStarted)return;
+ dbListenerStarted=true;
+ setDiag("認証済み・読込中","認証トークンを確認して共通データを読み込んでいます。",false);
+ user.getIdToken(true).then(function(){
+   itemsRef.on("value",function(snapshot){
+     var data=snapshot.val();
+     if(data){
+       items=Object.keys(data).map(function(k){
+  var x=data[k]||{};
+  x.id=Number(x.id||k);
+  x.requests=Array.isArray(x.requests)?x.requests:[];
+  x.photos=Array.isArray(x.photos)?x.photos:[];
+  x.status=x.status||"募集中";
+  x.qty=Number(x.qty||1);
+  return x;
+});
+       setDiag("接続済み（匿名認証）","共通データ "+items.length+"件を取得しました。",false);
+     }else{
+       items=[];
+       setDiag("接続済み（匿名認証）","Firebaseには現在0件です。",false);
+     }
+     render();
+   },function(err){
+     console.error("Firebase read error:",err);
+     setDiag("読込エラー",(err.code||"error")+"："+(err.message||"Firebaseから読み込めませんでした。"),true);
+   });
+ }).catch(function(err){
+   console.error("Token error:",err);
+   setDiag("認証トークンエラー",(err.code||"error")+"："+(err.message||""),true);
+ });
+}
+setDiag("認証中...","Firebase匿名認証を確認しています。",false);
+auth.onAuthStateChanged(function(user){
+ if(user){
+   startDatabase(user);
+ }else{
+   auth.signInAnonymously().catch(function(err){
+     console.error("Anonymous auth error:",err);
+     setDiag("認証エラー",(err.code||"error")+"："+(err.message||"匿名認証に失敗しました。"),true);
+   });
+ }
+});
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]})}
+function statusClass(s){return s==="希望受付あり"?"wait":s==="交渉中"||s==="譲渡決定"?"talk":s==="引渡済"?"done":""}
+function render(){
+ var q=el("search").value.toLowerCase(),cat=el("category").value,st=el("statusFilter").value;
+ var list=items.filter(function(x){return(!q||(x.name+" "+x.dept+" "+x.location).toLowerCase().indexOf(q)>-1)&&(!cat||x.category===cat)&&(!st||x.status===st)});
+ el("cards").innerHTML=list.map(function(x){var pic=x.photos&&x.photos[0]?'<img src="'+x.photos[0]+'">':"📦";return '<article class="card"><div class="pic">'+pic+'</div><div class="body"><span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span><h3>'+esc(x.name)+' × '+x.qty+'</h3><div class="meta">状態：'+esc(x.condition)+'<br>所在：'+esc(x.location)+'<br>出品：'+esc(x.dept)+'<br>譲受希望：'+(x.requests||[]).length+'件</div><button class="btn outline detail" data-id="'+x.id+'">詳細を見る</button></div></article>'}).join("")||"<p>該当する備品はありません。</p>";
+ el("nOpen").textContent=items.filter(function(x){return x.status==="募集中"}).length;
+ el("nWait").textContent=items.filter(function(x){return x.status==="希望受付あり"}).length;
+ el("nTalk").textContent=items.filter(function(x){return x.status==="交渉中"||x.status==="譲渡決定"}).length;
+ el("nDone").textContent=items.filter(function(x){return x.status==="引渡済"}).length;
+}
+function showDetail(id){
+ var x=items.find(function(i){return i.id===id}), imgs=(x.photos||[]).map(function(p){return '<img src="'+p+'">'}).join("");
+ el("detailContent").innerHTML='<h2>'+esc(x.name)+'</h2><div class="preview">'+imgs+'</div><p>数量：'+x.qty+'<br>カテゴリー：'+esc(x.category)+'<br>状態：'+esc(x.condition)+'<br>出品部署：'+esc(x.dept)+'<br>担当者：'+esc(x.person)+'<br>設置場所：'+esc(x.location)+'<br>寸法・仕様：'+esc(x.size||"-")+'<br>引取希望期限：'+esc(x.deadline||"-")+'<br>備考：'+esc(x.note||"-")+'</p><div class="row">'+((x.status==="募集中"||x.status==="希望受付あり")?'<button class="btn request" data-id="'+x.id+'">この備品の譲受を希望する</button>':"")+'<button class="btn secondary close">閉じる</button></div>';
+ open("detailModal");
+}
+function resize(file){return new Promise(function(resolve,reject){var r=new FileReader();r.onerror=reject;r.onload=function(){var im=new Image();im.onerror=reject;im.onload=function(){var max=1000,scale=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext("2d").drawImage(im,0,0,c.width,c.height);resolve(c.toDataURL("image/jpeg",.72))};im.src=r.result};r.readAsDataURL(file)})}
+el("newBtn").addEventListener("click",function(){photos=[];el("preview").innerHTML="";open("newModal")});
+el("adminBtn").onclick=function(){
+ try{
+   el("loginForm").reset();
+   open("loginModal");
+ }catch(err){
+   alert("管理者認証画面を開けません："+err.message);
+ }
+};
+document.addEventListener("click",function(e){
+ if(e.target.classList.contains("close")){var o=e.target.closest(".overlay");if(o)close(o.id)}
+ if(e.target.classList.contains("detail"))showDetail(Number(e.target.dataset.id));
+ if(e.target.classList.contains("request")){close("detailModal");var id=Number(e.target.dataset.id),x=items.find(function(i){return i.id===id});el("requestForm").elements.itemId.value=id;el("requestForm").elements.qty.max=x.qty;open("requestModal")}
+ if(e.target.dataset.af!==undefined){adminFilter=e.target.dataset.af;renderAdmin()}
+ if(e.target.classList.contains("choose"))choose(Number(e.target.dataset.item),Number(e.target.dataset.req));
+ if(e.target.classList.contains("complete"))complete(Number(e.target.dataset.id));
+ if(e.target.classList.contains("release"))release(Number(e.target.dataset.id));
+ if(e.target.classList.contains("delete"))removeItem(Number(e.target.dataset.id));
+});
+el("photoInput").addEventListener("change",async function(e){photos=[];var fs=Array.prototype.slice.call(e.target.files,0,5);for(var i=0;i<fs.length;i++){try{photos.push(await resize(fs[i]))}catch(err){}}el("preview").innerHTML=photos.map(function(p){return '<img src="'+p+'">'}).join("")});
+el("newForm").addEventListener("submit",function(e){e.preventDefault();var f=e.target.elements;items.unshift({id:Date.now(),name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:[]});save();e.target.reset();photos=[];close("newModal");render();alert("備品を登録しました。")});
+el("requestForm").addEventListener("submit",function(e){e.preventDefault();var f=e.target.elements,x=items.find(function(i){return i.id===Number(f.itemId.value)});x.requests.push({id:Date.now(),dept:f.dept.value,person:f.person.value,qty:Number(f.qty.value),note:f.note.value,date:new Date().toLocaleDateString("ja-JP"),selected:false});if(x.status==="募集中")x.status="希望受付あり";save();e.target.reset();close("requestModal");render();alert("譲受希望を登録しました。管財課で確認します。")});
+el("loginForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ var pw=e.target.elements.password.value;
+ if(pw!==PASS){alert("パスワードが違います。");return;}
+ try{
+   adminFilter="";
+   renderAdmin();
+   close("loginModal");
+   open("adminModal");
+ }catch(err){
+   console.error("Admin screen error:",err);
+   alert("管理画面の表示処理でエラーが発生しました："+err.message);
+ }
+});
+function renderAdmin(){var list=items.filter(function(x){return!adminFilter||x.status===adminFilter});el("adminList").innerHTML=list.map(function(x){var rs=(x.requests||[]).map(function(r){return '<div class="req"><b>'+esc(r.dept)+'　'+esc(r.person)+'</b>　希望 '+r.qty+'点 '+(r.selected?"【交渉先】":"")+'<br><small>申請：'+esc(r.date)+'　'+esc(r.note||"")+'</small>'+(!r.selected&&x.status!=="引渡済"?'<div class="row"><button class="btn choose" data-item="'+x.id+'" data-req="'+r.id+'">この部署と交渉開始</button></div>':"")+'</div>'}).join("")||'<p>譲受希望はありません。</p>';return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3><div class="adminInfo"><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>担当者</b>'+esc(x.person)+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div></div><div class="requests">'+rs+'</div><div class="row">'+(x.status==="交渉中"?'<button class="btn complete" data-id="'+x.id+'">引渡完了</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>':"")+'<button class="btn danger delete" data-id="'+x.id+'">出品削除</button></div></section>'}).join("")||"<p>該当案件はありません。</p>"}
+function choose(i,r){if(!confirm("この部署を交渉先として選択しますか？"))return;var x=items.find(function(a){return a.id===i});x.requests.forEach(function(a){a.selected=a.id===r});x.status="交渉中";save();render();renderAdmin()}
+function complete(i){if(!confirm("引渡済に変更しますか？"))return;items.find(function(a){return a.id===i}).status="引渡済";save();render();renderAdmin()}
+function release(i){if(!confirm("交渉を解除して希望受付へ戻しますか？"))return;var x=items.find(function(a){return a.id===i});x.requests.forEach(function(a){a.selected=false});x.status=x.requests.length?"希望受付あり":"募集中";save();render();renderAdmin()}
+function removeItem(i){if(!confirm("この出品を削除しますか？"))return;items=items.filter(function(a){return a.id!==i});save();render();renderAdmin()}
+["search","category","statusFilter"].forEach(function(id){el(id).addEventListener(id==="search"?"input":"change",render)});
+render();
+})();
+</script>
+</body></html>
