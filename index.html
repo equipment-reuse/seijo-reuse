@@ -152,6 +152,10 @@ var seed=[
 var items=[], dbListenerStarted=false;
 
 /* v5.4: UI操作関数を復旧 */
+function getTransferStatus(x){
+  return x.transferStatus || "募集中";
+}
+
 function getManagementType(x){
   if(!x.managementType) return "一般備品";
   if(x.managementType==="fixed") return "固定資産・管理対象";
@@ -304,7 +308,7 @@ el("newForm").addEventListener("submit",function(e){
  e.preventDefault();
  var f=e.target.elements,id=Date.now();
  var item={id:id,name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,
-managementType:f.managementType.value,fixedAssetLabelPhoto:(f.managementType.value==="fixed"?fixedAssetLabelPhoto:""),dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
+managementType:f.managementType.value,fixedAssetLabelPhoto:(f.managementType.value==="fixed"?fixedAssetLabelPhoto:""),transferStatus:"募集中",dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
  var approx=JSON.stringify(item).length;
  if(approx>3500000){alert("写真データが大きすぎます。写真枚数を減らすか、より小さい画像を使用してください。");return;}
  itemsRef.child(String(id)).set(item).then(function(){
