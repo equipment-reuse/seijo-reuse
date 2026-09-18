@@ -55,13 +55,13 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 
 <div class="overlay" id="detailModal"><div class="modal" id="detailContent"></div></div>
 <div class="overlay" id="requestModal"><div class="modal"><h2>譲受希望</h2><form id="requestForm"><input type="hidden" name="itemId"><label class="label">希望部署<input class="field" name="dept" required></label><label class="label">担当者<input class="field" name="person" required></label><label class="label">希望数量<input class="field" type="number" min="1" value="1" name="qty" required></label><label class="label">コメント<textarea class="field" rows="3" name="note"></textarea></label><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn">譲受希望を送信</button></div></form></div></div>
-<div class="overlay" id="loginModal"><div class="modal"><h2>管財課 管理者認証</h2><p>管理画面を開くには管理者パスワードを入力してください。</p><form id="loginForm"><input class="field" type="password" name="password" placeholder="管理者パスワード" required><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn">ログイン</button></div></form><div class="notice">デモ用パスワード：<b>kanzai2026</b><br>本番ではサーバー側の認証へ変更します。</div></div></div>
+<div class="overlay" id="loginModal"><div class="modal"><h2>管財課 管理者認証</h2><p>Firebaseに登録した管財課管理者アカウントでログインしてください。</p><form id="loginForm"><input class="field" type="email" name="email" value="kanzai_s@seijo.jp" placeholder="管理者メールアドレス" required><input class="field" type="password" name="password" placeholder="パスワード" required><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit">ログイン</button></div></form><div class="notice">管理者メールアドレス：<b>kanzai_s@seijo.jp</b><br>パスワードはFirebase Authenticationで管理します。</div></div></div>
 <div class="overlay" id="adminModal"><div class="modal wide"><h2>管財課 管理画面</h2><div class="row"><button class="btn secondary" data-af="">全案件</button><button class="btn secondary" data-af="希望受付あり">希望受付あり</button><button class="btn secondary" data-af="交渉中">交渉中</button><button class="btn secondary" data-af="引渡済">引渡済</button><button class="btn secondary close">閉じる</button></div><div id="adminList"></div></div></div>
 
 <script>
 (function(){
 "use strict";
-var KEY="seijo_reuse_v5", PASS="kanzai2026", photos=[], adminFilter="";
+var KEY="seijo_reuse_v5", photos=[], adminFilter="";
 var firebaseConfig={
  apiKey:"AIzaSyD9SlPQP4HzSftvCEsSqrIJa9Jy_64CF7I",
  authDomain:"eng-copilot-414507.firebaseapp.com",
@@ -196,17 +196,20 @@ el("newForm").addEventListener("submit",function(e){e.preventDefault();var f=e.t
 el("requestForm").addEventListener("submit",function(e){e.preventDefault();var f=e.target.elements,x=items.find(function(i){return i.id===Number(f.itemId.value)});x.requests.push({id:Date.now(),dept:f.dept.value,person:f.person.value,qty:Number(f.qty.value),note:f.note.value,date:new Date().toLocaleDateString("ja-JP"),selected:false});if(x.status==="募集中")x.status="希望受付あり";save();e.target.reset();close("requestModal");render();alert("譲受希望を登録しました。管財課で確認します。")});
 el("loginForm").addEventListener("submit",function(e){
  e.preventDefault();
+ var email=e.target.elements.email.value.trim();
  var pw=e.target.elements.password.value;
- if(pw!==PASS){alert("パスワードが違います。");return;}
- try{
+ auth.signInWithEmailAndPassword(email,pw).then(function(cred){
+   if(!cred.user || cred.user.email!=="kanzai_s@seijo.jp"){
+     return auth.signOut().then(function(){throw new Error("not-admin");});
+   }
    adminFilter="";
    renderAdmin();
    close("loginModal");
    open("adminModal");
- }catch(err){
-   console.error("Admin screen error:",err);
-   alert("管理画面の表示処理でエラーが発生しました："+err.message);
- }
+ }).catch(function(err){
+   console.error("Admin auth error:",err);
+   alert("管理者ログインに失敗しました。メールアドレスまたはパスワードを確認してください。");
+ });
 });
 function renderAdmin(){var list=items.filter(function(x){return!adminFilter||x.status===adminFilter});el("adminList").innerHTML=list.map(function(x){var rs=(x.requests||[]).map(function(r){return '<div class="req"><b>'+esc(r.dept)+'　'+esc(r.person)+'</b>　希望 '+r.qty+'点 '+(r.selected?"【交渉先】":"")+'<br><small>申請：'+esc(r.date)+'　'+esc(r.note||"")+'</small>'+(!r.selected&&x.status!=="引渡済"?'<div class="row"><button class="btn choose" data-item="'+x.id+'" data-req="'+r.id+'">この部署と交渉開始</button></div>':"")+'</div>'}).join("")||'<p>譲受希望はありません。</p>';return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3><div class="adminInfo"><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>担当者</b>'+esc(x.person)+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div></div><div class="requests">'+rs+'</div><div class="row">'+(x.status==="交渉中"?'<button class="btn complete" data-id="'+x.id+'">引渡完了</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>':"")+'<button class="btn danger delete" data-id="'+x.id+'">出品削除</button></div></section>'}).join("")||"<p>該当案件はありません。</p>"}
 function choose(i,r){if(!confirm("この部署を交渉先として選択しますか？"))return;var x=items.find(function(a){return a.id===i});x.requests.forEach(function(a){a.selected=a.id===r});x.status="交渉中";save();render();renderAdmin()}
