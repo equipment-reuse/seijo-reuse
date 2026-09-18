@@ -45,7 +45,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 </head>
 <body>
-<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。 <small style="opacity:.65">v8.5b 本番候補版</small></p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button type="button" class="btn secondary" id="helpBtn">利用方法</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
+<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。 <small style="opacity:.65">v8.6 管理区分追加版</small></p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button type="button" class="btn secondary" id="helpBtn">利用方法</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
 <main>
 <section class="hero"><h2>捨てる前に、次の使い手へ。</h2><p>学園内で不要になった備品を登録し、必要な部署へつなぐためのリユースサイトです。</p></section>
 <section id="firebaseDiag" style="background:#fff;border:1px solid #dfe4de;border-radius:12px;padding:12px 14px;margin-bottom:14px">
@@ -63,6 +63,11 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 <label class="label">カテゴリー<select class="field" name="category"><option>机・テーブル</option><option>椅子</option><option>収納</option><option>電化製品</option><option>教育・事務用品</option><option>その他</option></select></label>
 <label class="label">数量<input class="field" type="number" min="1" value="1" name="qty" required></label>
 <label class="label">状態<select class="field" name="condition"><option>良好</option><option>使用感あり</option><option>要確認</option></select></label>
+<label class="label">管理区分<select class="field" name="managementType">
+<option value="general">一般備品</option>
+<option value="fixed">固定資産・管理対象</option>
+<option value="unknown">判断不明</option>
+</select></label>
 <label class="label">出品部署<input class="field" name="dept" required></label>
 <label class="label">担当者<input class="field" name="person" required></label>
 <label class="label">現在の設置場所<input class="field" name="location" required></label>
@@ -141,6 +146,13 @@ var seed=[
 var items=[], dbListenerStarted=false;
 
 /* v5.4: UI操作関数を復旧 */
+function getManagementType(x){
+  if(!x.managementType) return "一般備品";
+  if(x.managementType==="fixed") return "固定資産・管理対象";
+  if(x.managementType==="unknown") return "判断不明";
+  return "一般備品";
+}
+
 function el(id){ return document.getElementById(id); }
 function open(id){ var x=el(id); if(x)x.classList.add("open"); }
 function close(id){ var x=el(id); if(x)x.classList.remove("open"); }
@@ -267,7 +279,8 @@ el("photoInput").addEventListener("change",async function(e){photos=[];var fs=Ar
 el("newForm").addEventListener("submit",function(e){
  e.preventDefault();
  var f=e.target.elements,id=Date.now();
- var item={id:id,name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
+ var item={id:id,name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,
+managementType:f.managementType.value,dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
  var approx=JSON.stringify(item).length;
  if(approx>3500000){alert("写真データが大きすぎます。写真枚数を減らすか、より小さい画像を使用してください。");return;}
  itemsRef.child(String(id)).set(item).then(function(){
