@@ -62,6 +62,19 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 (function(){
 "use strict";
 var KEY="seijo_reuse_v5", photos=[], adminFilter="";
+var ADMIN_EMAIL="kanzai_s@seijo.jp";
+function isAdmin(){
+  var u=auth.currentUser;
+  return !!(u && u.email===ADMIN_EMAIL && !u.isAnonymous);
+}
+function requireAdmin(){
+  if(!isAdmin()){
+    alert("この操作は管財課管理者のみ実行できます。");
+    return false;
+  }
+  return true;
+}
+
 var firebaseConfig={
  apiKey:"AIzaSyD9SlPQP4HzSftvCEsSqrIJa9Jy_64CF7I",
  authDomain:"eng-copilot-414507.firebaseapp.com",
@@ -199,7 +212,7 @@ el("loginForm").addEventListener("submit",function(e){
  var email=e.target.elements.email.value.trim();
  var pw=e.target.elements.password.value;
  auth.signInWithEmailAndPassword(email,pw).then(function(cred){
-   if(!cred.user || cred.user.email!=="kanzai_s@seijo.jp"){
+   if(!cred.user || cred.user.email!==ADMIN_EMAIL){
      return auth.signOut().then(function(){throw new Error("not-admin");});
    }
    adminFilter="";
