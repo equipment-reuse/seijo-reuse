@@ -26,7 +26,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 </head>
 <body>
-<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。</p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
+<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。 <small style="opacity:.65">v5.9</small></p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
 <main>
 <section class="hero"><h2>捨てる前に、次の使い手へ。</h2><p>学園内で不要になった備品を登録し、必要な部署へつなぐためのリユースサイトです。</p></section>
 <section id="firebaseDiag" style="background:#fff;border:1px solid #dfe4de;border-radius:12px;padding:12px 14px;margin-bottom:14px">
@@ -136,9 +136,10 @@ function startDatabase(user){
        items=Object.keys(data).map(function(k){
   var x=data[k]||{};
   x.id=Number(x.id||k);
-  x.requests=Array.isArray(x.requests)?x.requests:[];
+  x.requests=Array.isArray(x.requests)?x.requests:(x.requests&&typeof x.requests==="object"?Object.keys(x.requests).map(function(rk){return x.requests[rk]}):[]);
   x.photos=Array.isArray(x.photos)?x.photos:[];
   x.status=x.status||"募集中";
+  if(x.status==="募集中" && x.requests.length>0)x.status="希望受付あり";
   x.qty=Number(x.qty||1);
   return x;
 });
@@ -205,8 +206,22 @@ document.addEventListener("click",function(e){
  if(e.target.classList.contains("delete"))removeItem(Number(e.target.dataset.id));
 });
 el("photoInput").addEventListener("change",async function(e){photos=[];var fs=Array.prototype.slice.call(e.target.files,0,5);for(var i=0;i<fs.length;i++){try{photos.push(await resize(fs[i]))}catch(err){}}el("preview").innerHTML=photos.map(function(p){return '<img src="'+p+'">'}).join("")});
-el("newForm").addEventListener("submit",function(e){e.preventDefault();var f=e.target.elements;items.unshift({id:Date.now(),name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:[]});save();e.target.reset();photos=[];close("newModal");render();alert("備品を登録しました。")});
-el("requestForm").addEventListener("submit",function(e){e.preventDefault();var f=e.target.elements,x=items.find(function(i){return i.id===Number(f.itemId.value)});x.requests.push({id:Date.now(),dept:f.dept.value,person:f.person.value,qty:Number(f.qty.value),note:f.note.value,date:new Date().toLocaleDateString("ja-JP"),selected:false});if(x.status==="募集中")x.status="希望受付あり";save();e.target.reset();close("requestModal");render();alert("譲受希望を登録しました。管財課で確認します。")});
+el("newForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ var f=e.target.elements,id=Date.now();
+ var item={id:id,name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
+ itemsRef.child(String(id)).set(item).then(function(){
+   e.target.reset();photos=[];close("newModal");alert("備品を登録しました。");
+ }).catch(function(err){console.error(err);alert("備品を登録できませんでした："+(err.message||err.code));});
+});
+el("requestForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ var f=e.target.elements,itemId=Number(f.itemId.value),rid=Date.now();
+ var req={id:rid,dept:f.dept.value,person:f.person.value,qty:Number(f.qty.value),note:f.note.value,date:new Date().toLocaleDateString("ja-JP"),selected:false};
+ itemsRef.child(String(itemId)).child("requests").child(String(rid)).set(req).then(function(){
+   e.target.reset();close("requestModal");alert("譲受希望を登録しました。管財課で確認します。");
+ }).catch(function(err){console.error(err);alert("譲受希望を登録できませんでした："+(err.message||err.code));});
+});
 el("loginForm").addEventListener("submit",function(e){
  e.preventDefault();
  var email=e.target.elements.email.value.trim();
@@ -225,10 +240,32 @@ el("loginForm").addEventListener("submit",function(e){
  });
 });
 function renderAdmin(){var list=items.filter(function(x){return!adminFilter||x.status===adminFilter});el("adminList").innerHTML=list.map(function(x){var rs=(x.requests||[]).map(function(r){return '<div class="req"><b>'+esc(r.dept)+'　'+esc(r.person)+'</b>　希望 '+r.qty+'点 '+(r.selected?"【交渉先】":"")+'<br><small>申請：'+esc(r.date)+'　'+esc(r.note||"")+'</small>'+(!r.selected&&x.status!=="引渡済"?'<div class="row"><button class="btn choose" data-item="'+x.id+'" data-req="'+r.id+'">この部署と交渉開始</button></div>':"")+'</div>'}).join("")||'<p>譲受希望はありません。</p>';return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3><div class="adminInfo"><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>担当者</b>'+esc(x.person)+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div></div><div class="requests">'+rs+'</div><div class="row">'+(x.status==="交渉中"?'<button class="btn complete" data-id="'+x.id+'">引渡完了</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>':"")+'<button class="btn danger delete" data-id="'+x.id+'">出品削除</button></div></section>'}).join("")||"<p>該当案件はありません。</p>"}
-function choose(i,r){if(!confirm("この部署を交渉先として選択しますか？"))return;var x=items.find(function(a){return a.id===i});x.requests.forEach(function(a){a.selected=a.id===r});x.status="交渉中";save();render();renderAdmin()}
-function complete(i){if(!confirm("引渡済に変更しますか？"))return;items.find(function(a){return a.id===i}).status="引渡済";save();render();renderAdmin()}
-function release(i){if(!confirm("交渉を解除して希望受付へ戻しますか？"))return;var x=items.find(function(a){return a.id===i});x.requests.forEach(function(a){a.selected=false});x.status=x.requests.length?"希望受付あり":"募集中";save();render();renderAdmin()}
-function removeItem(i){if(!confirm("この出品を削除しますか？"))return;items=items.filter(function(a){return a.id!==i});save();render();renderAdmin()}
+function choose(i,r){
+ if(!requireAdmin())return;
+ if(!confirm("この部署を交渉先として選択しますか？"))return;
+ var x=items.find(function(a){return a.id===i}); if(!x)return;
+ var updates={status:"交渉中"};
+ (x.requests||[]).forEach(function(a){updates["requests/"+a.id+"/selected"]=(a.id===r)});
+ itemsRef.child(String(i)).update(updates).catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+}
+function complete(i){
+ if(!requireAdmin())return;
+ if(!confirm("引渡済に変更しますか？"))return;
+ itemsRef.child(String(i)).child("status").set("引渡済").catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+}
+function release(i){
+ if(!requireAdmin())return;
+ if(!confirm("交渉を解除して希望受付へ戻しますか？"))return;
+ var x=items.find(function(a){return a.id===i}); if(!x)return;
+ var updates={status:"募集中"};
+ (x.requests||[]).forEach(function(a){updates["requests/"+a.id+"/selected"]=false});
+ itemsRef.child(String(i)).update(updates).catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+}
+function removeItem(i){
+ if(!requireAdmin())return;
+ if(!confirm("この出品を削除しますか？"))return;
+ itemsRef.child(String(i)).remove().catch(function(err){alert("出品を削除できませんでした："+(err.message||err.code));});
+}
 ["search","category","statusFilter"].forEach(function(id){el(id).addEventListener(id==="search"?"input":"change",render)});
 render();
 })();
