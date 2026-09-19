@@ -327,7 +327,15 @@ el("requestForm").addEventListener("submit",function(e){
  if(sameDept && !confirm("同じ部署から既に譲受希望が登録されています。追加で登録しますか？"))return;
  var req={id:rid,dept:f.dept.value,person:f.person.value,qty:rq,note:f.note.value,date:new Date().toLocaleDateString("ja-JP"),selected:false};
  itemsRef.child(String(itemId)).child("requests").child(String(rid)).set(req).then(function(){
-   e.target.reset();close("requestModal");alert("譲受希望を登録しました。管財課で確認します。");
+   var nextStatus = (target.managementType==="fixed") ? "管財課確認中" : "出品部署確認中";
+   return itemsRef.child(String(itemId)).child("transferStatus").set(nextStatus).then(function(){
+     e.target.reset();close("requestModal");
+     if(target.managementType==="fixed"){
+       alert("譲受希望を登録しました。固定資産・管理対象のため管財課で確認します。");
+     }else{
+       alert("譲受希望を登録しました。出品部署で確認してください。");
+     }
+   });
  }).catch(function(err){console.error(err);alert("譲受希望を登録できませんでした："+(err.message||err.code));});
 });
 el("loginForm").addEventListener("submit",function(e){
