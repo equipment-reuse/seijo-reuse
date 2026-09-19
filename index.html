@@ -45,7 +45,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 </head>
 <body>
-<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。 <small style="opacity:.65">v8.8-2 譲渡フロー対応版</small></p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button type="button" class="btn secondary" id="helpBtn">利用方法</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
+<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。 <small style="opacity:.65">v8.8-3① 出品部署譲渡決定対応版</small></p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button type="button" class="btn secondary" id="helpBtn">利用方法</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
 <main>
 <section class="hero"><h2>捨てる前に、次の使い手へ。</h2><p>学園内で不要になった備品を登録し、必要な部署へつなぐためのリユースサイトです。</p></section>
 <section id="firebaseDiag" style="background:#fff;border:1px solid #dfe4de;border-radius:12px;padding:12px 14px;margin-bottom:14px">
@@ -367,7 +367,7 @@ function renderAdmin(){var list=items.filter(function(x){return!adminFilter||x.s
    ?'<div class="row"><button class="btn choose" data-item="'+x.id+'" data-req="'+esc(r._key!=null?r._key:r.id)+'">この部署と交渉開始</button></div>'
    :"";
  return '<div class="req"><b>'+esc(r.dept)+'　'+esc(r.person)+'</b>　希望 '+r.qty+'点　'+applicantState+'<br><small>申請：'+esc(r.date)+'　'+esc(r.note||"")+'</small>'+chooseBtn+'</div>'
-}).join("")||'<p>譲受希望はありません。</p>';return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3><div class="adminInfo"><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>担当者</b>'+esc(x.person)+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div><div><b>備品台帳・固定資産</b>'+esc(x.ledgerStatus||"未確認")+'</div></div><div class="requests">'+rs+'</div><div class="row">'+(x.status==="交渉中"?'<button class="btn decide" data-id="'+x.id+'">譲渡決定</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>':"")+(x.status==="譲渡決定"?'<button class="btn ledger" data-id="'+x.id+'">台帳確認</button><button class="btn complete" data-id="'+x.id+'">引渡完了</button><button class="btn secondary release" data-id="'+x.id+'">譲渡決定を解除</button>':"")+'<button class="btn danger delete" data-id="'+x.id+'">出品削除</button></div></section>'}).join("")||"<p>該当案件はありません。</p>"}
+}).join("")||'<p>譲受希望はありません。</p>';return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3><div class="adminInfo"><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>担当者</b>'+esc(x.person)+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div><div><b>備品台帳・固定資産</b>'+esc(x.ledgerStatus||"未確認")+'</div><div><b>譲渡先部署</b>'+esc(x.transferDept||"-")+'</div><div><b>譲渡先担当者</b>'+esc(x.transferPerson||"-")+'</div></div><div class="requests">'+rs+'</div><div class="row">'+(x.status==="交渉中"?'<button class="btn decide" data-id="'+x.id+'">譲渡決定</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>':"")+(x.status==="譲渡決定"?'<button class="btn ledger" data-id="'+x.id+'">台帳確認</button><button class="btn complete" data-id="'+x.id+'">引渡完了</button><button class="btn secondary release" data-id="'+x.id+'">譲渡決定を解除</button>':"")+'<button class="btn danger delete" data-id="'+x.id+'">出品削除</button></div></section>'}).join("")||"<p>該当案件はありません。</p>"}
 function choose(i,rkey){
  if(!requireAdmin())return;
  if(!confirm("この部署を交渉先として選択しますか？"))return;
@@ -381,8 +381,17 @@ function choose(i,rkey){
 }
 function decide(i){
  if(!requireAdmin())return;
- if(!confirm("この交渉先への譲渡を決定しますか？"))return;
- itemsRef.child(String(i)).child("status").set("譲渡決定").catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+ var x=items.find(function(a){return a.id===i});
+ if(!x)return;
+ var selected=(x.requests||[]).find(function(r){return r.selected;});
+ if(!selected){alert("譲渡決定する希望者を選択してください。");return;}
+ if(!confirm(selected.dept+" へ譲渡決定しますか？"))return;
+ itemsRef.child(String(i)).update({
+   status:"譲渡決定",
+   transferStatus:"譲渡決定",
+   transferDept:selected.dept||"",
+   transferPerson:selected.person||""
+ }).catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
 }
 function ledger(i){
  if(!requireAdmin())return;
