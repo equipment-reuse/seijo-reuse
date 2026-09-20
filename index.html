@@ -27,17 +27,18 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 #reusePhotoViewer img{display:block;width:auto!important;height:auto!important;max-width:calc(100vw - 40px)!important;max-height:calc(100vh - 40px)!important;object-fit:contain!important}
 #reusePhotoViewer button{position:fixed;right:18px;top:18px;z-index:2147483647;width:48px;height:48px;border:0;border-radius:24px;background:#fff;font-size:30px;cursor:pointer}
 .preview img{cursor:zoom-in}
-.helpFlow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:14px 0 20px}.helpStep{background:#f2f6f4;border:1px solid #d8e3de;border-radius:10px;padding:9px 11px;font-weight:700;font-size:13px}.helpArrow{color:#68756f;font-weight:700}.helpSection{margin:18px 0}.helpSection h3{margin:0 0 7px;font-size:16px}.helpSection p{margin:5px 0;line-height:1.75}.helpWarning{margin:18px 0;padding:14px 16px;border:2px solid #b86b00;border-radius:10px;background:#fff8e8;line-height:1.75}.helpStatus{display:grid;grid-template-columns:110px 1fr;gap:7px 12px;margin-top:9px;font-size:14px}@media(max-width:700px){.helpArrow{display:none}.helpStep{flex:1 1 44%}.helpStatus{grid-template-columns:95px 1fr}}.deadlineOver{display:inline-block;margin-left:6px;padding:3px 8px;border-radius:999px;background:#b42318;color:#fff;font-size:12px;font-weight:800}.deadlineOverBox{margin:10px 0;padding:9px 11px;border:1px solid #e0a39d;border-radius:8px;background:#fff1f0;color:#8f1d14;font-weight:700}#adminHelpModal{z-index:80}</style>
+.helpFlow{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin:14px 0 20px}.helpStep{background:#f2f6f4;border:1px solid #d8e3de;border-radius:10px;padding:9px 11px;font-weight:700;font-size:13px}.helpArrow{color:#68756f;font-weight:700}.helpSection{margin:18px 0}.helpSection h3{margin:0 0 7px;font-size:16px}.helpSection p{margin:5px 0;line-height:1.75}.helpWarning{margin:18px 0;padding:14px 16px;border:2px solid #b86b00;border-radius:10px;background:#fff8e8;line-height:1.75}.helpStatus{display:grid;grid-template-columns:110px 1fr;gap:7px 12px;margin-top:9px;font-size:14px}.userState{max-width:230px;font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;align-self:center}.sectionTitle{margin:22px 0 8px;color:var(--g2)}.emptyBox{padding:15px;border:1px dashed #b9c7bd;border-radius:10px;color:var(--muted)}.confirmGrid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:9px}.confirmGrid div{padding:8px;border-radius:8px;background:#eef3ef;font-size:13px}.btn:disabled{opacity:.5;cursor:not-allowed}@media(max-width:700px){.helpArrow{display:none}.helpStep{flex:1 1 44%}.helpStatus{grid-template-columns:95px 1fr}.userState{display:none}.confirmGrid{grid-template-columns:1fr}}.deadlineOver{display:inline-block;margin-left:6px;padding:3px 8px;border-radius:999px;background:#b42318;color:#fff;font-size:12px;font-weight:800}.deadlineOverBox{margin:10px 0;padding:9px 11px;border:1px solid #e0a39d;border-radius:8px;background:#fff1f0;color:#8f1d14;font-weight:700}#adminHelpModal{z-index:80}#fixedAssetModal{z-index:90}</style>
 <div id="reusePhotoViewer" aria-hidden="true"><button type="button" id="reusePhotoViewerClose">×</button><img id="reusePhotoViewerImg" alt="備品写真 拡大表示"></div>
 <div id="helpModal" class="modal"><div class="modalbox" style="max-width:820px"><div class="modalhead"><div><strong>備品REUSE 利用方法</strong><div class="small">まだ使える備品を、学園内でもう一度。</div></div><button type="button" class="close" id="helpClose">×</button></div><div class="modalbody">
 <div class="helpSection"><h3>このサイトについて</h3><p>学園内で不要となった、まだ使用可能な備品を、他部署で再利用するための仕組みです。廃棄する前に学園内での再利用をご検討ください。</p><div class="helpWarning"><strong>利用対象について</strong><br>本サイトは、成城学園の教職員、契約職員および学園業務に関係する委託事業者等を対象としています。掲載情報には学園内の備品・設置場所・担当者等の情報が含まれるため、利用目的に関係のない第三者へのURLの無断共有は行わないでください。</div></div>
-<div class="helpFlow"><div class="helpStep">① 出品</div><div class="helpArrow">→</div><div class="helpStep">② 譲受希望</div><div class="helpArrow">→</div><div class="helpStep">③ 管財課確認</div><div class="helpArrow">→</div><div class="helpStep">④ 交渉</div><div class="helpArrow">→</div><div class="helpStep">⑤ 譲渡決定</div><div class="helpArrow">→</div><div class="helpStep">⑥ 台帳確認</div><div class="helpArrow">→</div><div class="helpStep">⑦ 引渡し</div></div>
+<div class="helpFlow"><div class="helpStep">① 出品</div><div class="helpArrow">→</div><div class="helpStep">② 譲受希望</div><div class="helpArrow">→</div><div class="helpStep">③ 出品部署が交渉先選択</div><div class="helpArrow">→</div><div class="helpStep">④ 譲渡決定</div><div class="helpArrow">→</div><div class="helpStep">⑤ 両部署が引渡確認</div></div>
+<div class="helpSection"><h3>初めて利用する方</h3><p>「利用者ログイン」→「新規利用登録」から、本人のメールアドレスと備品REUSE専用パスワードを登録します。メールに届く本人確認リンクを開いてからログインしてください。普段使用しているメールのパスワードは入力しないでください。</p><p><b>@seijo.jp</b> の学園職員は本人確認後すぐ利用できます。委託業者等の学外利用者は、本人確認後に会社名などを申請し、管財課の承認を受けてから利用できます。</p></div>
 <div class="helpSection"><h3>不要な備品を出品したい方</h3><p>「＋ 不用品を登録」から、写真・品名・数量・状態・出品部署・担当者・現在の設置場所・引取希望期限・寸法や仕様などを入力して登録してください。</p></div>
 <div class="helpSection"><h3>備品を譲り受けたい方</h3><p>「詳細を見る」→「譲受希望」から希望部署・担当者・希望数量・コメントを入力してください。<strong>希望を送信した時点では譲渡決定ではありません。</strong></p></div>
-<div class="helpSection"><h3>複数の部署から希望があった場合</h3><p>管財課が希望内容を確認し、交渉する部署を決定します。他の希望部署は交渉中・譲渡決定の間は保留となります。</p></div>
-<div class="helpSection"><h3>ステータスの意味</h3><div class="helpStatus"><b>募集中</b><span>譲受希望を受け付けています。</span><b>希望受付あり</b><span>1件以上の譲受希望が届いています。</span><b>交渉中</b><span>管財課が交渉先を選定し、確認・調整中です。</span><b>譲渡決定</b><span>譲渡先が決定しています。ただし、まだ移動しないでください。</span><b>引渡済</b><span>必要な確認と引渡しが完了しています。</span></div></div>
-<div class="helpWarning"><strong>重要：備品を勝手に移動しないでください</strong><br>固定資産・備品台帳の変更手続きが必要となる場合があります。「譲渡決定」と表示されても、管財課による台帳確認等が完了するまでは、部署間で備品を移動しないでください。</div>
-<div class="helpSection"><h3>引渡しについて</h3><p>管財課が備品台帳・固定資産の確認を行った後、関係部署間で引渡し・移動を行います。完了後、ステータスが「引渡済」となります。</p></div>
+<div class="helpSection"><h3>複数の部署から希望があった場合</h3><p>出品部署が「マイ管理」から交渉する部署を決定します。他の希望部署は交渉中・譲渡決定の間は保留となります。</p></div>
+<div class="helpSection"><h3>ステータスの意味</h3><div class="helpStatus"><b>募集中</b><span>譲受希望を受け付けています。</span><b>希望受付あり</b><span>1件以上の譲受希望が届いています。</span><b>交渉中</b><span>出品部署が交渉先を選び、部署間で確認・調整中です。</span><b>譲渡決定</b><span>譲渡先が決定しています。ただし、まだ移動しないでください。</span><b>引渡済</b><span>必要な確認と引渡しが完了しています。</span></div></div>
+<div class="helpWarning"><strong>固定資産・判断不明の備品</strong><br>備品シール写真を添付し、管財課が「承認」にするまで譲渡決定できません。一般備品は管財課を仲介せず、部署間で進められます。</div>
+<div class="helpSection"><h3>引渡しについて</h3><p>出品部署と譲受部署の双方が引渡しを確認すると「引渡済」になります。固定資産・判断不明の備品は、事前に管財課の承認が必要です。</p></div>
 <div class="helpSection"><h3>引取希望期限について</h3><p>引取希望期限を過ぎた備品は「期限超過」と表示されます。自動的に削除・募集終了にはなりません。掲載継続等については管財課で確認します。</p></div><div class="helpSection"><h3>写真を見る</h3><p>詳細画面の写真をクリック／タップすると、画面いっぱいに拡大して確認できます。</p></div>
 <div class="helpSection" style="border-top:1px solid #ddd;padding-top:14px"><p><strong>ご不明な点は管財課までお問い合わせください。</strong></p></div>
 </div></div></div><script>(function(){document.addEventListener("DOMContentLoaded",function(){var b=document.getElementById("helpBtn"),m=document.getElementById("helpModal"),c=document.getElementById("helpClose");if(m)m.style.display="none";if(b)b.onclick=function(){m.style.display="flex";m.classList.add("show")};if(c)c.onclick=function(e){e.preventDefault();e.stopPropagation();m.classList.remove("show");m.style.display="none"};if(m)m.addEventListener("click",function(e){if(e.target===m){m.classList.remove("show");m.style.display="none"}});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m){m.classList.remove("show");m.style.display="none"}});});})();</script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
@@ -45,7 +46,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 </head>
 <body>
-<header><div class="head"><div class="brand"><small>学校法人成城学園｜管財課</small><h1>備品 REUSE</h1><p>まだ使える備品を、学園内でもう一度。 <small style="opacity:.65">v8.8-3① 出品部署譲渡決定対応版</small></p></div><div class="actions"><button class="btn secondary" id="adminBtn">🔐 管理画面</button><button type="button" class="btn secondary" id="helpBtn">利用方法</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
+<header><div class="head"><div class="brand"><small>学校法人成城学園｜部署間リユース</small><h1>備品 REUSE</h1><p>一般備品は部署間で、固定資産は管財課確認を経て譲渡します。 <small style="opacity:.65">v8.9-2</small></p></div><div class="actions"><span class="userState" id="userState">未ログイン</span><button class="btn secondary" id="deptBtn">🔐 利用者ログイン</button><button class="btn secondary" id="adminBtn">管財課</button><button type="button" class="btn secondary" id="helpBtn">利用方法</button><button class="btn" id="newBtn">＋ 不用品を登録</button></div></div></header>
 <main>
 <section class="hero"><h2>捨てる前に、次の使い手へ。</h2><p>学園内で不要になった備品を登録し、必要な部署へつなぐためのリユースサイトです。</p></section>
 <section id="firebaseDiag" style="background:#fff;border:1px solid #dfe4de;border-radius:12px;padding:12px 14px;margin-bottom:14px">
@@ -70,6 +71,8 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 </select></label>
 <label class="label">出品部署<input class="field" name="dept" required></label>
 <label class="label">担当者<input class="field" name="person" required></label>
+<label class="label">出品担当者メールアドレス（譲受希望等の通知先）<input class="field" type="email" name="email" required placeholder="xxxxx@seijo.jp"></label>
+
 <label class="label">現在の設置場所<input class="field" name="location" required></label>
 <label class="label">引取希望期限<input class="field" type="date" name="deadline"></label>
 <label class="label widefield">寸法・仕様<input class="field" name="size" placeholder="例：W1200 × D600 × H700 mm"></label>
@@ -84,20 +87,35 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:28px}
 </div><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit">登録する</button></div></form></div></div>
 
 <div class="overlay" id="detailModal"><div class="modal" id="detailContent"></div></div>
-<div class="overlay" id="requestModal"><div class="modal"><h2>譲受希望</h2><form id="requestForm"><input type="hidden" name="itemId"><label class="label">希望部署<input class="field" name="dept" required></label><label class="label">担当者<input class="field" name="person" required></label><label class="label">希望数量<input class="field" type="number" min="1" value="1" name="qty" required></label><label class="label">コメント<textarea class="field" rows="3" name="note"></textarea></label><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit">譲受希望を送信</button></div></form></div></div>
-<div class="overlay" id="loginModal"><div class="modal"><h2>管財課 管理者認証</h2><p>管財課管理者アカウントでログインしてください。一般利用者は管理画面を使用できません。</p><form id="loginForm"><input class="field" type="email" name="email" value="kanzai_s@seijo.jp" placeholder="管理者メールアドレス" required><input class="field" type="password" name="password" placeholder="パスワード" required><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit">ログイン</button></div></form><div class="notice">管理者メールアドレス：<b>kanzai_s@seijo.jp</b><br>パスワードはFirebase Authenticationで管理します。</div></div></div>
+<div class="overlay" id="fixedAssetModal"><div class="modal">
+<h2>固定資産確認</h2>
+<div id="fixedAssetContent"></div>
+<label class="label">確認結果
+<select class="field" id="fixedAssetResult">
+<option value="管財課確認待ち">管財課確認待ち</option>
+<option value="承認">承認（部署間譲渡可）</option>
+<option value="差戻し">差戻し（写真・情報要確認）</option>
+</select></label>
+<div class="row"><button type="button" class="btn secondary close">閉じる</button><button type="button" class="btn" id="fixedAssetSaveBtn">確認結果を保存</button></div>
+</div></div>
+<div class="overlay" id="requestModal"><div class="modal"><h2>譲受希望</h2><form id="requestForm"><input type="hidden" name="itemId"><label class="label">希望部署<input class="field" name="dept" required></label><label class="label">担当者<input class="field" name="person" required></label>
+<label class="label">メールアドレス<input class="field" type="email" name="email" required placeholder="xxxxx@seijo.jp"></label><label class="label">希望数量<input class="field" type="number" min="1" value="1" name="qty" required></label><label class="label">コメント<textarea class="field" rows="3" name="note"></textarea></label><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit">譲受希望を送信</button></div></form></div></div>
+<div class="overlay" id="accountModal"><div class="modal"><h2>利用者ログイン</h2><p>ログインしたメールアドレスが出品・譲受希望の通知先になります。</p><button type="button" class="btn" id="googleLoginBtn">学園Googleアカウントでログイン</button><div class="notice">パソコン上のHTMLではGoogleログインが利用できないことがあります。その場合は登録済みメールアドレスと備品REUSE専用パスワードを使用してください。<br><b>学園職員・委託業者とも、初回は「新規利用登録」から登録できます。</b></div><form id="staffLoginForm"><label class="label">メールアドレス<input class="field" type="email" name="email" placeholder="name@example.jp" required></label><label class="label">備品REUSE専用パスワード<input class="field" type="password" name="password" required></label><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button type="button" class="btn secondary" id="openRegisterBtn">新規利用登録</button><button type="button" class="btn secondary resetPassword" data-form="staffLoginForm">パスワード再設定メール</button><button class="btn" type="submit">メールでログイン</button></div></form></div></div>
+<div class="overlay" id="registerModal"><div class="modal"><h2>新規利用登録</h2><p>本人が受信できるメールアドレスを登録してください。登録後、本人確認メールが届きます。</p><div class="notice"><b>普段使用しているメールのパスワードは入力しないでください。</b><br>ここでは備品REUSE専用の新しいパスワードを設定します。<br><b>@seijo.jp 以外の委託業者等は、本人確認後に管財課の承認申請へ進みます。</b></div><form id="registerForm"><label class="label">メールアドレス<input class="field" type="email" name="email" placeholder="name@example.jp" required></label><label class="label">備品REUSE専用パスワード（8文字以上）<input class="field" type="password" name="password" minlength="8" autocomplete="new-password" required></label><label class="label">パスワード確認<input class="field" type="password" name="passwordConfirm" minlength="8" autocomplete="new-password" required></label><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button class="btn" type="submit" id="registerSubmitBtn">登録して確認メールを送信</button></div></form></div></div>
+<div class="overlay" id="contractorModal"><div class="modal"><h2>委託業者 利用申請</h2><div id="contractorStatus"></div><form id="contractorForm"><div class="notice">本人確認済みメール：<b id="contractorEmail"></b><br>管財課の承認後、出品と譲受希望の両方を利用できます。</div><label class="label">会社・団体名<input class="field" name="company" required></label><label class="label">担当者氏名<input class="field" name="person" required></label><label class="label">学園内の関係部署<input class="field" name="relatedDept" placeholder="例：管財課、初等学校" required></label><label class="label">電話番号<input class="field" name="phone" type="tel" required></label><label class="label">利用目的<textarea class="field" name="purpose" rows="3" required></textarea></label><label class="label">利用希望期限<input class="field" name="requestedUntil" type="date" required></label><div class="row"><button type="button" class="btn secondary" id="contractorLogoutBtn">ログアウト</button><button class="btn" type="submit" id="contractorSubmitBtn">管財課へ申請</button></div></form><div class="row"><button type="button" class="btn secondary close">閉じる</button></div></div></div>
+<div class="overlay" id="deptModal"><div class="modal wide"><h2>部署用 マイ管理</h2><div class="notice" id="deptUserInfo"></div><div class="row"><button type="button" class="btn danger" id="staffLogoutBtn">ログアウト</button><button type="button" class="btn secondary close">閉じる</button></div><h3 class="sectionTitle">自分の出品</h3><div id="myListings"></div><h3 class="sectionTitle">自分の譲受希望</h3><div id="myRequests"></div></div></div>
+<div class="overlay" id="loginModal"><div class="modal"><h2>管財課 管理者認証</h2><p>管財課管理者アカウントでログインしてください。一般利用者は管理画面を使用できません。</p><form id="loginForm"><input class="field" type="email" name="email" value="kanzai_s@seijo.jp" placeholder="管理者メールアドレス" required><input class="field" type="password" name="password" placeholder="パスワード" required><div class="row"><button type="button" class="btn secondary close">キャンセル</button><button type="button" class="btn secondary resetPassword" data-form="loginForm">パスワード再設定メール</button><button class="btn" type="submit">ログイン</button></div></form><div class="notice">管理者メールアドレス：<b>kanzai_s@seijo.jp</b><br>パスワードはFirebase Authenticationで管理します。</div></div></div>
 <div class="overlay" id="adminHelpModal"><div class="modal wide"><h2>管理者用 操作説明</h2>
-<div class="helpWarning"><strong>管理者操作について</strong><br>管理者画面は、管財課による確認・調整・台帳確認・引渡管理のための画面です。</div>
-<div class="helpSection"><h3>1．譲受希望の確認</h3><p>希望部署・担当者・希望数量・コメントを確認します。複数部署から希望がある場合は、内容を確認してから交渉先を選択してください。</p></div>
-<div class="helpSection"><h3>2．交渉先の選択</h3><p>「この部署と交渉開始」を選択します。選択した希望者は「交渉中」、その他は「希望者・保留」となります。交渉先を変更する場合は、いったん「交渉解除」を行います。</p></div>
-<div class="helpSection"><h3>3．譲渡決定</h3><p>交渉・確認が整ったら「譲渡決定」を行います。この時点ではまだ備品を移動しないでください。</p></div>
-<div class="helpWarning"><strong>4．備品台帳・固定資産の確認</strong><br>「譲渡決定」後は必ず「台帳確認」を行います。「確認中」のままでは「引渡完了」にできません。必要な台帳変更等を完了してから次へ進みます。</div>
-<div class="helpSection"><h3>5．引渡完了</h3><p>台帳確認と実際の移動・引渡しが完了した後に「引渡完了」を実行します。選定された希望者は「引渡済」、その他の希望者は「受付終了」となります。</p></div>
-<div class="helpSection"><h3>6．期限超過</h3><p>期限を過ぎても自動削除・自動募集終了は行われません。掲載継続、出品者への確認、削除等を管財課で判断してください。</p></div>
-<div class="helpSection"><h3>7．出品削除</h3><p>誤登録や掲載不要となった備品を削除できます。削除は元に戻せないため、対象を確認してから実行してください。</p></div>
-<div class="helpSection"><h3>8．管理者ログアウト</h3><p>管理作業終了後は必ず「管理者ログアウト」を行ってください。特に共用PCでは必ずログアウトしてください。</p></div>
-<p><strong>基本フロー：</strong>譲受希望確認 → 交渉先選択 → 交渉 → 譲渡決定 → 台帳確認 → 引渡し → 引渡完了</p>
-<div class="row"><button type="button" class="btn secondary close">閉じる</button></div></div></div><div class="overlay" id="adminModal"><div class="modal wide"><h2>管財課 管理画面</h2><div class="row"><button type="button" class="btn danger" id="adminLogoutBtn">管理者ログアウト</button><button type="button" class="btn secondary" id="adminHelpBtn">管理者用説明</button><button class="btn secondary" data-af="">全案件</button><button class="btn secondary" data-af="希望受付あり">希望受付あり</button><button class="btn secondary" data-af="交渉中">交渉中</button><button class="btn secondary" data-af="引渡済">引渡済</button><button class="btn secondary close">閉じる</button></div><div id="adminList"></div></div></div>
+<div class="helpWarning"><strong>管理者操作について</strong><br>通常の一般備品は部署間で完結します。管財課画面では、固定資産・管理対象・判断不明の案件を優先して確認します。</div>
+<div class="helpSection"><h3>1．備品シールの確認</h3><p>写真と出品情報を確認し、問題がなければ「承認」、不足があれば「差戻し」を保存します。</p></div>
+<div class="helpSection"><h3>2．部署間の進行</h3><p>交渉先の選択、譲渡決定、引渡確認は原則として出品部署と譲受部署が行います。管財課は固定資産案件の確認に集中できます。</p></div>
+<div class="helpSection"><h3>3．委託業者の利用申請</h3><p>「委託業者申請」から会社名・担当者・利用目的・期限を確認し、問題がなければ「承認」を押します。承認後は委託業者も出品と譲受希望の両方を利用できます。契約終了時は「利用停止」を押してください。</p></div>
+<div class="helpWarning"><strong>4．一般備品の台帳確認</strong><br>従来の台帳確認機能は一般備品専用として残しています。「全案件」を開いた場合に利用できますが、部署間譲渡を止める必須工程にはしていません。</div>
+<div class="helpSection"><h3>5．期限超過</h3><p>期限を過ぎても自動削除・自動募集終了は行われません。掲載継続、出品者への確認、削除等を管財課で判断してください。</p></div>
+<div class="helpSection"><h3>6．出品削除</h3><p>誤登録や掲載不要となった備品を削除できます。削除は元に戻せないため、対象を確認してから実行してください。</p></div>
+<div class="helpSection"><h3>7．管理者ログアウト</h3><p>管理作業終了後は必ず「管理者ログアウト」を行ってください。特に共用PCでは必ずログアウトしてください。</p></div>
+<p><strong>固定資産フロー：</strong>シール写真確認 → 承認／差戻し → 部署間譲渡 → 双方の引渡確認</p>
+<div class="row"><button type="button" class="btn secondary close">閉じる</button></div></div></div><div class="overlay" id="adminModal"><div class="modal wide"><h2>管財課 管理画面</h2><div class="row"><button type="button" class="btn danger" id="adminLogoutBtn">ログアウト</button><button type="button" class="btn secondary" id="adminHelpBtn">管理者用説明</button><button class="btn secondary" data-af="contractors">委託業者申請</button><button class="btn secondary" data-af="fixed">固定資産等</button><button class="btn secondary" data-af="pending">確認待ち・差戻し</button><button class="btn secondary" data-af="all">全案件</button><button class="btn secondary" data-af="引渡済">引渡済</button><button class="btn secondary close">閉じる</button></div><div id="adminList"></div></div></div>
 
 <script>
 window.reusePhotoOpen=function(src){var v=document.getElementById("reusePhotoViewer"),im=document.getElementById("reusePhotoViewerImg");if(!v||!im)return;im.src=src;v.classList.add("open");};
@@ -106,24 +124,9 @@ document.addEventListener("click",function(e){if(e.target&&e.target.id==="reuseP
 document.addEventListener("keydown",function(e){if(e.key==="Escape")window.reusePhotoClose();});
 (function(){
 "use strict";
-function isDeadlineOver(x){
- if(!x||!x.deadline||x.status==="引渡済")return false;
- var d=new Date(String(x.deadline)+"T23:59:59");
- return !isNaN(d.getTime())&&d.getTime()<Date.now();
-}
-var KEY="seijo_reuse_v5", photos=[], fixedAssetLabelPhoto="", adminFilter="";
-var ADMIN_EMAIL="kanzai_s@seijo.jp";
-function isAdmin(){
-  var u=auth.currentUser;
-  return !!(u && u.email===ADMIN_EMAIL && !u.isAnonymous);
-}
-function requireAdmin(){
-  if(!isAdmin()){
-    alert("この操作は管財課管理者のみ実行できます。");
-    return false;
-  }
-  return true;
-}
+var photos=[], fixedAssetLabelPhoto="", fixedAssetTargetId=null, adminFilter="fixed";
+var ADMIN_EMAIL="kanzai_s@seijo.jp", STAFF_DOMAIN="seijo.jp";
+var items=[], dbListenerStarted=false, contractorAccess=null, accessRequests=[];
 
 var firebaseConfig={
  apiKey:"AIzaSyD9SlPQP4HzSftvCEsSqrIJa9Jy_64CF7I",
@@ -135,336 +138,328 @@ var firebaseConfig={
  appId:"1:34003320906:web:5c4befdc1fb24273d426b3"
 };
 if(typeof firebase==="undefined"){
- document.addEventListener("DOMContentLoaded",function(){
-   var st=document.getElementById("connState"),dt=document.getElementById("connDetail");
-   if(st){st.textContent="SDK読込エラー";st.style.color="#9a2f2f"}
-   if(dt)dt.textContent="Firebase SDKを読み込めません。学園PCのWebフィルタ等で gstatic.com が制限されている可能性があります。";
- });
- throw new Error("Firebase SDK not loaded");
+ var st0=document.getElementById("connState"),dt0=document.getElementById("connDetail");
+ if(st0){st0.textContent="SDK読込エラー";st0.style.color="#9a2f2f";}
+ if(dt0)dt0.textContent="Firebase SDKを読み込めません。gstatic.comへの接続を確認してください。";
+ return;
 }
 firebase.initializeApp(firebaseConfig);
-var db=firebase.database(), auth=firebase.auth(), itemsRef=db.ref("reuse/items");
-var seed=[
-{id:101,name:"会議用チェア",category:"椅子",qty:10,condition:"良好",dept:"法人事務局",person:"佐藤",location:"法人事務局棟",deadline:"2026-10-31",size:"W500×D520×H780",note:"10脚まとめての引取りを優先",status:"希望受付あり",photos:[],requests:[{id:1,dept:"総務課",person:"山田",qty:10,note:"会議室で使用希望",date:"2026/9/17",selected:false},{id:2,dept:"学生課",person:"鈴木",qty:5,note:"5脚希望",date:"2026/9/17",selected:false}]},
-{id:102,name:"書庫キャビネット",category:"収納",qty:2,condition:"使用感あり",dept:"大学事務局",person:"高橋",location:"大学2号館",deadline:"2026-10-15",size:"W900×D450×H1800",note:"搬出経路要確認",status:"交渉中",photos:[],requests:[{id:3,dept:"経理課",person:"田中",qty:2,note:"",date:"2026/9/16",selected:true}]},
-{id:103,name:"折りたたみテーブル",category:"机・テーブル",qty:4,condition:"良好",dept:"管財課",person:"橋本",location:"法人事務局棟倉庫",deadline:"2026-11-15",size:"W1800×D450×H700",note:"キャスター付き",status:"募集中",photos:[],requests:[]}
-];
-var items=[], dbListenerStarted=false;
+var db=firebase.database(), auth=firebase.auth(), itemsRef=db.ref("reuse/items"), accessRef=db.ref("reuse/accessRequests");
 
-/* v5.4: UI操作関数を復旧 */
-function getTransferStatus(x){
-  return x.transferStatus || "募集中";
+function el(id){return document.getElementById(id);}
+function open(id){var x=el(id);if(x)x.classList.add("open");}
+function close(id){var x=el(id);if(x)x.classList.remove("open");}
+function isOpen(id){var x=el(id);return !!(x&&x.classList.contains("open"));}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c];});}
+function emailOf(user){return String(user&&user.email||"").trim().toLowerCase();}
+function isSchoolEmail(value){var s=String(value||"").trim().toLowerCase();return s.slice(-(STAFF_DOMAIN.length+1))==="@"+STAFF_DOMAIN;}
+function isValidEmail(value){return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value||"").trim());}
+function isVerifiedAccount(user){return !!(user&&(user.emailVerified===true||emailOf(user)===ADMIN_EMAIL));}
+function contractorAccessActive(){return !!(contractorAccess&&contractorAccess.status==="approved"&&Number(contractorAccess.validUntilAt||0)>=Date.now());}
+function isStaff(){var u=auth.currentUser;return !!(u&&!u.isAnonymous&&isVerifiedAccount(u)&&(isSchoolEmail(u.email)||contractorAccessActive()));}
+function isAdmin(){return isStaff()&&emailOf(auth.currentUser)===ADMIN_EMAIL;}
+function requireStaff(){if(isStaff())return true;var u=auth.currentUser;if(u&&isVerifiedAccount(u)&&!isSchoolEmail(u.email)){renderContractorAccess();open("contractorModal");}else{alert("この操作には利用者ログインが必要です。");open("accountModal");}return false;}
+function requireAdmin(){if(isAdmin())return true;alert("この操作は管財課管理者のみ実行できます。");return false;}
+function isItemOwner(x){var u=auth.currentUser;if(!u||!x)return false;return x.ownerUid===u.uid||(!x.ownerUid&&emailOf(u)===String(x.email||"").trim().toLowerCase());}
+function isRequestOwner(r){var u=auth.currentUser;if(!u||!r)return false;return r.requesterUid===u.uid||(!r.requesterUid&&emailOf(u)===String(r.email||"").trim().toLowerCase());}
+function canManage(x){return isAdmin()||isItemOwner(x);}
+function requiresKanzai(x){return !!x&&(x.managementType==="fixed"||x.managementType==="unknown");}
+function fixedApproved(x){return !!x&&(x.fixedAssetStatus==="承認"||x.fixedAssetStatus==="固定資産変更不要"||x.fixedAssetStatus==="固定資産変更必要・処理済");}
+function isDeadlineOver(x){if(!x||!x.deadline||x.status==="引渡済")return false;var d=new Date(String(x.deadline)+"T23:59:59");return !isNaN(d.getTime())&&d.getTime()<Date.now();}
+function getTransferStatus(x){return x.transferStatus||"募集中";}
+function getManagementType(x){return x.managementType==="fixed"?"固定資産・管理対象":x.managementType==="unknown"?"判断不明":"一般備品";}
+function statusClass(s){return s==="希望受付あり"?"wait":s==="交渉中"||s==="譲渡決定"?"talk":s==="引渡済"?"done":"";}
+function selectedRequest(x){return (x.requests||[]).find(function(r){return r.selected;});}
+function selectedRequestKey(x){var r=selectedRequest(x);return r?String(r._key!=null?r._key:r.id):"";}
+
+function setDiag(a,b,bad){var st=el("connState"),dt=el("connDetail");if(st){st.textContent=a;st.style.color=bad?"#9a2f2f":"#164f38";}if(dt)dt.textContent=b||"";}
+function updateAuthUi(){
+ var u=auth.currentUser,logged=isStaff(),external=!!(u&&!isSchoolEmail(u.email));
+ var state=contractorAccess&&contractorAccess.status==="pending"?"承認待ち":contractorAccess&&contractorAccess.status==="rejected"?"却下":contractorAccess&&contractorAccess.status==="disabled"?"利用停止":"利用申請";
+ el("userState").textContent=logged?String(u.email||""):(u?String(u.email||"")+"（"+state+"）":"未ログイン");
+ el("deptBtn").textContent=logged?"マイ管理":(external?"利用申請状況":"🔐 利用者ログイン");
+ /* 未ログインでもボタンを押せるようにし、ログイン画面へ誘導する。disabledにすると認証待ちがフリーズに見える。 */
+ el("newBtn").disabled=false;
+ var newEmail=el("newForm").elements.email,reqEmail=el("requestForm").elements.email;
+ if(logged){newEmail.value=u.email||"";reqEmail.value=u.email||"";}
+ newEmail.readOnly=logged;reqEmail.readOnly=logged;
 }
-
-function getManagementType(x){
-  if(!x.managementType) return "一般備品";
-  if(x.managementType==="fixed") return "固定資産・管理対象";
-  if(x.managementType==="unknown") return "判断不明";
-  return "一般備品";
+function stopDatabase(){itemsRef.off("value");dbListenerStarted=false;items=[];}
+function renderContractorAccess(){
+ var u=auth.currentUser,form=el("contractorForm"),status=el("contractorStatus");
+ el("contractorEmail").textContent=u&&u.email?u.email:"";
+ if(!contractorAccess){status.innerHTML='<div class="notice"><b>申請情報を入力してください。</b><br>申請後、管財課へメール通知されます。</div>';form.style.display="block";return;}
+ var labels={pending:"管財課確認待ち",approved:"承認済み",rejected:"申請却下",disabled:"利用停止"};
+ var label=labels[contractorAccess.status]||"確認中",extra="";
+ if(contractorAccess.status==="approved"&&!contractorAccessActive())label="利用期限切れ";
+ if(contractorAccess.rejectionReason)extra='<br>理由：'+esc(contractorAccess.rejectionReason);
+ if(contractorAccess.requestedUntil)extra+='<br>利用希望期限：'+esc(contractorAccess.requestedUntil);
+ status.innerHTML='<div class="notice"><b>申請状況：'+esc(label)+'</b>'+extra+'<br>会社・団体名：'+esc(contractorAccess.company||"")+'<br>管財課の承認前または期限終了後は備品データを利用できません。</div>';
+ var reapply=contractorAccess.status==="rejected"||contractorAccess.status==="disabled"||(contractorAccess.status==="approved"&&!contractorAccessActive());
+ form.style.display=reapply?"block":"none";
+ if(reapply){
+  form.elements.company.value=contractorAccess.company||"";form.elements.person.value=contractorAccess.person||"";form.elements.relatedDept.value=contractorAccess.relatedDept||"";form.elements.phone.value=contractorAccess.phone||"";form.elements.purpose.value=contractorAccess.purpose||"";form.elements.requestedUntil.value=contractorAccess.requestedUntil||"";
+ }
 }
-
-function el(id){ return document.getElementById(id); }
-function open(id){ var x=el(id); if(x)x.classList.add("open"); }
-function close(id){ var x=el(id); if(x)x.classList.remove("open"); }
-
-/* Firebaseへ現在の一覧を保存 */
-function save(){
- var obj={};
- items.forEach(function(x){ obj[String(x.id)]=x; });
- return itemsRef.set(obj).then(function(){
-   var d=el("connDetail");
-   if(d)d.textContent="Firebaseへの保存に成功しました。最終保存："+new Date().toLocaleTimeString("ja-JP");
- }).catch(function(e){
-   console.error("Firebase write error:",e);
-   setDiag("保存エラー",(e.code||"error")+"："+(e.message||"保存できませんでした。"),true);
-   throw e;
- });
+function loadContractorAccess(user){
+ stopDatabase();contractorAccess=null;updateAuthUi();
+ setDiag("委託業者の承認確認中",String(user.email||"")+" の利用申請を確認しています。",false);
+ return accessRef.child(user.uid).once("value").then(function(snapshot){
+  contractorAccess=snapshot.val()||null;updateAuthUi();
+  if(contractorAccessActive()){close("contractorModal");startDatabase(user);return;}
+  render();renderContractorAccess();
+  var msg=!contractorAccess?"利用申請を入力してください。":contractorAccess.status==="pending"?"管財課の承認をお待ちください。":contractorAccess.status==="rejected"?"申請が却下されています。":"利用が停止中または期限切れです。";
+  setDiag("委託業者の利用承認が必要です",msg,false);open("contractorModal");
+ }).catch(function(err){console.error(err);setDiag("利用申請の確認エラー",(err.code||"error")+"："+(err.message||""),true);});
 }
-
-function setDiag(a,b,bad){
- var st=document.getElementById("connState"),dt=document.getElementById("connDetail");
- if(st){st.textContent=a;st.style.color=bad?"#9a2f2f":"#164f38"}
- if(dt)dt.textContent=b||"";
-}
-function startDatabase(user){
- if(dbListenerStarted)return;
- dbListenerStarted=true;
- setDiag("認証済み・読込中","認証トークンを確認して共通データを読み込んでいます。",false);
- user.getIdToken(true).then(function(){
-   itemsRef.on("value",function(snapshot){
-     var data=snapshot.val();
-     if(data){
-       items=Object.keys(data).map(function(k){
-  var x=data[k]||{};
-  x.id=Number(x.id||k);
+function normalizeItems(data){
+ return Object.keys(data||{}).map(function(k){
+  var x=data[k]||{};x.id=Number(x.id||k);
   x.requests=Array.isArray(x.requests)?x.requests.map(function(r,idx){r=r||{};r._key=String(idx);return r;}):(x.requests&&typeof x.requests==="object"?Object.keys(x.requests).map(function(rk){var r=x.requests[rk]||{};r._key=String(rk);return r;}):[]);
   x.photos=Array.isArray(x.photos)?x.photos:[];
-  x.status=x.status||"募集中";
-  if(x.status==="募集中" && x.requests.length>0)x.status="希望受付あり";
-  x.qty=Number(x.qty||1);
-  return x;
-});
-       setDiag("接続済み（匿名認証）","共通データ "+items.length+"件を取得しました。",false);
-     }else{
-       items=[];
-       setDiag("接続済み（匿名認証）","Firebaseには現在0件です。",false);
-     }
-     render();
-   },function(err){
-     console.error("Firebase read error:",err);
-     setDiag("読込エラー",(err.code||"error")+"："+(err.message||"Firebaseから読み込めませんでした。"),true);
-   });
- }).catch(function(err){
-   console.error("Token error:",err);
-   setDiag("認証トークンエラー",(err.code||"error")+"："+(err.message||""),true);
+  if(x.managementType!=="fixed"&&x.managementType!=="unknown")x.managementType="general";
+  x.status=x.status||"募集中";if(x.status==="募集中"&&x.requests.length)x.status="希望受付あり";
+  x.qty=Number(x.qty||1);return x;
  });
 }
-setDiag("認証中...","一般利用モードを開始しています。",false);
+function startDatabase(user){
+ if(dbListenerStarted)return;dbListenerStarted=true;
+ setDiag("認証済み・読込中",String(user.email||"")+" で共通データを読み込んでいます。",false);
+ user.getIdToken(true).then(function(){
+  itemsRef.on("value",function(snapshot){
+   items=normalizeItems(snapshot.val());
+   setDiag("接続済み","共通データ "+items.length+"件を取得しました。",false);
+    render();if(isOpen("deptModal"))renderDepartment();if(isAdmin()&&isOpen("adminModal")){if(adminFilter==="contractors")renderContractorAdmin();else renderAdmin();}
+  },function(err){console.error(err);setDiag("読込エラー",(err.code||"error")+"："+(err.message||"Firebaseから読み込めませんでした。"),true);if(err.code==="PERMISSION_DENIED")open("accountModal");});
+ }).catch(function(err){setDiag("認証トークンエラー",(err.code||"error")+"："+(err.message||""),true);});
+}
+function handleAuth(user){
+ updateAuthUi();
+ if(user&&!isVerifiedAccount(user)){stopDatabase();setDiag("メール確認が必要です","登録メールに届いた確認リンクを開いてから、もう一度ログインしてください。",false);render();open("accountModal");return;}
+ if(user&&isSchoolEmail(user.email)){contractorAccess=null;updateAuthUi();startDatabase(user);return;}
+ if(user){loadContractorAccess(user);return;}
+ contractorAccess=null;stopDatabase();updateAuthUi();setDiag("ログインが必要です","利用者ログイン後に備品一覧を表示します。",false);render();open("accountModal");
+}
+setDiag("認証確認中","ログイン状態を確認しています。",false);
+auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+ .catch(function(){return auth.setPersistence(firebase.auth.Auth.Persistence.SESSION);})
+ .catch(function(){return auth.setPersistence(firebase.auth.Auth.Persistence.NONE);})
+ .then(function(){auth.onAuthStateChanged(handleAuth);})
+ .catch(function(err){setDiag("認証設定エラー",err.message||String(err),true);open("accountModal");});
 
-/* v6.3:
-   ページを新しく開いた時は、前回の管理者ログイン状態を引き継がない。
-   管理者認証はこのページを開いている間だけ保持する。 */
-auth.setPersistence(firebase.auth.Auth.Persistence.NONE)
-.then(function(){
-  return auth.signOut();
-})
-.then(function(){
-  return auth.signInAnonymously();
-})
-.then(function(cred){
-  startDatabase(cred.user);
-})
-.catch(function(err){
-  console.error("Startup auth error:",err);
-  setDiag("認証エラー",(err.code||"error")+"："+(err.message||"認証に失敗しました。"),true);
-});
-
-function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]})}
-function statusClass(s){return s==="希望受付あり"?"wait":s==="交渉中"||s==="譲渡決定"?"talk":s==="引渡済"?"done":""}
 function render(){
- var q=el("search").value.toLowerCase(),cat=el("category").value,st=el("statusFilter").value;
- var list=items.filter(function(x){return(!q||(x.name+" "+x.dept+" "+x.location).toLowerCase().indexOf(q)>-1)&&(!cat||x.category===cat)&&(!st||x.status===st)});
- el("cards").innerHTML=list.map(function(x){var pic=x.photos&&x.photos[0]?'<img src="'+x.photos[0]+'">':"📦";return '<article class="card"><div class="pic">'+pic+'</div><div class="body"><span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span>'+(isDeadlineOver(x)?'<span class="deadlineOver">期限超過</span>':'')+'<h3>'+esc(x.name)+' × '+x.qty+'</h3><div class="meta">状態：'+esc(x.condition)+'<br>所在：'+esc(x.location)+'<br>出品：'+esc(x.dept)+'<br>譲受希望：'+(x.requests||[]).length+'件</div><button class="btn outline detail" data-id="'+x.id+'">詳細を見る</button></div></article>'}).join("")||"<p>該当する備品はありません。</p>";
- el("nOpen").textContent=items.filter(function(x){return x.status==="募集中"}).length;
- el("nWait").textContent=items.filter(function(x){return x.status==="希望受付あり"}).length;
- el("nTalk").textContent=items.filter(function(x){return x.status==="交渉中"||x.status==="譲渡決定"}).length;
- el("nDone").textContent=items.filter(function(x){return x.status==="引渡済"}).length;
+ var logged=isStaff(),q=el("search").value.toLowerCase(),cat=el("category").value,st=el("statusFilter").value;
+ var list=logged?items.filter(function(x){return(!q||(String(x.name)+" "+String(x.dept)+" "+String(x.location)).toLowerCase().indexOf(q)>-1)&&(!cat||x.category===cat)&&(!st||x.status===st);}):[];
+ el("cards").innerHTML=logged?(list.map(function(x){var pic=x.photos&&x.photos[0]?'<img src="'+esc(x.photos[0])+'">':"📦";return '<article class="card"><div class="pic">'+pic+'</div><div class="body"><span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span>'+(requiresKanzai(x)?'<span class="status wait">'+esc(getManagementType(x))+'</span>':'')+(isDeadlineOver(x)?'<span class="deadlineOver">期限超過</span>':'')+'<h3>'+esc(x.name)+' × '+x.qty+'</h3><div class="meta">状態：'+esc(x.condition)+'<br>所在：'+esc(x.location)+'<br>出品：'+esc(x.dept)+'<br>譲受希望：'+(x.requests||[]).length+'件</div><button class="btn outline detail" data-id="'+x.id+'">詳細を見る</button></div></article>';}).join("")||"<p>該当する備品はありません。</p>"):'<div class="emptyBox">備品一覧を表示するには「部署ログイン」してください。</div>';
+ el("nOpen").textContent=list.filter(function(x){return x.status==="募集中";}).length;
+ el("nWait").textContent=list.filter(function(x){return x.status==="希望受付あり";}).length;
+ el("nTalk").textContent=list.filter(function(x){return x.status==="交渉中"||x.status==="譲渡決定";}).length;
+ el("nDone").textContent=list.filter(function(x){return x.status==="引渡済";}).length;
 }
 function showDetail(id){
- var x=items.find(function(i){return i.id===id}), imgs=(x.photos||[]).map(function(p){return '<img src="'+p+'" onclick="window.reusePhotoOpen(this.src);event.stopPropagation();" title="クリックして拡大">'}).join("");
- el("detailContent").innerHTML='<h2>'+esc(x.name)+'</h2>'+(isDeadlineOver(x)?'<div class="deadlineOverBox">引取希望期限を過ぎています。掲載継続等については管財課で確認します。</div>':'')+'<div class="preview">'+imgs+'</div><p>数量：'+x.qty+'<br>カテゴリー：'+esc(x.category)+'<br>状態：'+esc(x.condition)+'<br>出品部署：'+esc(x.dept)+'<br>担当者：'+esc(x.person)+'<br>設置場所：'+esc(x.location)+'<br>寸法・仕様：'+esc(x.size||"-")+'<br>引取希望期限：'+esc(x.deadline||"-")+'<br>備考：'+esc(x.note||"-")+'</p><div class="row">'+((x.status==="募集中"||x.status==="希望受付あり")?'<button class="btn request" data-id="'+x.id+'">この備品の譲受を希望する</button>':"")+'<button class="btn secondary close">閉じる</button></div>';
+ var x=items.find(function(i){return i.id===id;});if(!x)return;
+ var imgs=(x.photos||[]).map(function(p){return '<img src="'+esc(p)+'" onclick="window.reusePhotoOpen(this.src);event.stopPropagation();" title="クリックして拡大">';}).join("");
+ var fixedInfo=requiresKanzai(x)?'<div class="notice">管財課確認：'+esc(x.fixedAssetStatus||"管財課確認待ち")+'</div>':"";
+ var canRequest=(x.status==="募集中"||x.status==="希望受付あり")&&!isItemOwner(x);
+ el("detailContent").innerHTML='<h2>'+esc(x.name)+'</h2>'+fixedInfo+(isDeadlineOver(x)?'<div class="deadlineOverBox">引取希望期限を過ぎています。出品部署へご確認ください。</div>':'')+'<div class="preview">'+imgs+'</div><p>数量：'+x.qty+'<br>管理区分：'+esc(getManagementType(x))+'<br>カテゴリー：'+esc(x.category)+'<br>状態：'+esc(x.condition)+'<br>出品部署：'+esc(x.dept)+'<br>担当者：'+esc(x.person)+'<br>設置場所：'+esc(x.location)+'<br>寸法・仕様：'+esc(x.size||"-")+'<br>引取希望期限：'+esc(x.deadline||"-")+'<br>備考：'+esc(x.note||"-")+'</p><div class="row">'+(canRequest?'<button class="btn request" data-id="'+x.id+'">この備品の譲受を希望する</button>':"")+'<button class="btn secondary close">閉じる</button></div>';
  open("detailModal");
 }
-function resize(file){return new Promise(function(resolve,reject){var r=new FileReader();r.onerror=reject;r.onload=function(){var im=new Image();im.onerror=reject;im.onload=function(){var max=1000,scale=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext("2d").drawImage(im,0,0,c.width,c.height);resolve(c.toDataURL("image/jpeg",.72))};im.src=r.result};r.readAsDataURL(file)})}
-el("newBtn").addEventListener("click",function(){photos=[];el("preview").innerHTML="";open("newModal")});
-el("adminBtn").onclick=function(){
- try{
-   if(isAdmin()){
-     adminFilter="";
-     renderAdmin();
-     open("adminModal");
-     return;
-   }
-   el("loginForm").reset();
-   var em=el("loginForm").elements.email;
-   if(em)em.value=ADMIN_EMAIL;
-   open("loginModal");
- }catch(err){
-   alert("管理画面を開けません："+err.message);
- }
-};
-document.addEventListener("click",function(e){
- if(e.target.classList.contains("close")){var o=e.target.closest(".overlay");if(o)close(o.id)}
- if(e.target.classList.contains("detail"))showDetail(Number(e.target.dataset.id));
- if(e.target.classList.contains("request")){close("detailModal");var id=Number(e.target.dataset.id),x=items.find(function(i){return i.id===id});el("requestForm").elements.itemId.value=id;el("requestForm").elements.qty.max=x.qty;open("requestModal")}
- if(e.target.dataset.af!==undefined){adminFilter=e.target.dataset.af;renderAdmin()}
- if(e.target.classList.contains("choose"))choose(Number(e.target.dataset.item),String(e.target.dataset.req));
- if(e.target.classList.contains("decide"))decide(Number(e.target.dataset.id));
- if(e.target.classList.contains("ledger"))ledger(Number(e.target.dataset.id));
- if(e.target.classList.contains("complete"))complete(Number(e.target.dataset.id));
- if(e.target.classList.contains("release"))release(Number(e.target.dataset.id));
- if(e.target.classList.contains("delete"))removeItem(Number(e.target.dataset.id));
-});
-el("newForm").elements.managementType.addEventListener("change",function(){
-  var area=el("fixedAssetLabelArea");
-  if(area) area.style.display=this.value==="fixed"?"block":"none";
-  if(this.value!=="fixed"){
-    fixedAssetLabelPhoto="";
-    if(el("fixedAssetLabelPreview")) el("fixedAssetLabelPreview").innerHTML="";
-  }
-});
+function resize(file){return new Promise(function(resolve,reject){var r=new FileReader();r.onerror=reject;r.onload=function(){var im=new Image();im.onerror=reject;im.onload=function(){var max=1000,scale=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext("2d").drawImage(im,0,0,c.width,c.height);resolve(c.toDataURL("image/jpeg",.72));};im.src=r.result;};r.readAsDataURL(file);});}
 
-el("fixedAssetLabelInput").addEventListener("change",async function(e){
-  var f=e.target.files[0];
-  if(!f)return;
-  try{
-    fixedAssetLabelPhoto=await resize(f);
-    el("fixedAssetLabelPreview").innerHTML='<img src="'+fixedAssetLabelPhoto+'">';
-  }catch(err){}
-});
+function requestState(x,r){if(r.selected&&x.status==="交渉中")return "交渉中";if(r.selected&&x.status==="譲渡決定")return "譲渡決定";if(r.selected&&x.status==="引渡済")return "引渡済";if(!r.selected&&(x.status==="交渉中"||x.status==="譲渡決定"))return "保留";if(x.status==="引渡済")return "受付終了";return "希望受付";}
+function renderDepartment(){
+ if(!isStaff())return;
+ var u=auth.currentUser;el("deptUserInfo").textContent="ログイン中："+String(u.email||"");
+ var own=items.filter(isItemOwner);
+ el("myListings").innerHTML=own.map(function(x){
+  var reqs=(x.requests||[]).map(function(r){var key=String(r._key!=null?r._key:r.id),btn=(!r.selected&&(x.status==="募集中"||x.status==="希望受付あり"))?'<div class="row"><button class="btn choose" data-item="'+x.id+'" data-req="'+esc(key)+'">この部署と交渉開始</button></div>':"";return '<div class="req"><b>'+esc(r.dept)+'　'+esc(r.person)+'</b>　希望 '+Number(r.qty||0)+'点　【'+esc(requestState(x,r))+'】<br><small>'+esc(r.email||"")+'　'+esc(r.note||"")+'</small>'+btn+'</div>';}).join("")||'<p>譲受希望はありません。</p>';
+  var actions="";
+  if(x.status==="交渉中")actions='<button class="btn decide" data-id="'+x.id+'">譲渡決定</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>';
+  if(x.status==="譲渡決定")actions='<button class="btn sellerConfirm" data-id="'+x.id+'" '+(x.handoverSellerConfirmed?'disabled':'')+'>'+(x.handoverSellerConfirmed?'出品部署確認済':'引渡しを確認')+'</button><button class="btn secondary release" data-id="'+x.id+'">譲渡決定を解除</button>';
+  if(x.status!=="引渡済")actions+='<button class="btn danger delete" data-id="'+x.id+'">出品削除</button>';
+  var fixed=requiresKanzai(x)?'<div class="notice"><b>管財課確認：</b>'+esc(x.fixedAssetStatus||"管財課確認待ち")+(fixedApproved(x)?"":"（承認されるまで譲渡決定できません）")+'</div>':"";
+  return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3>'+fixed+'<div class="adminInfo"><div><b>管理区分</b>'+esc(getManagementType(x))+'</div><div><b>手続状況</b>'+esc(getTransferStatus(x))+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div></div><div class="requests">'+reqs+'</div><div class="row">'+actions+'</div></section>';
+ }).join("")||'<div class="emptyBox">自分が登録した出品はありません。</div>';
+ var mine=[];items.forEach(function(x){(x.requests||[]).forEach(function(r){if(isRequestOwner(r))mine.push({item:x,request:r});});});
+ el("myRequests").innerHTML=mine.map(function(p){var x=p.item,r=p.request,key=String(r._key!=null?r._key:r.id),actions="";if(r.selected&&x.status==="譲渡決定")actions='<button class="btn requesterConfirm" data-id="'+x.id+'" data-req="'+esc(key)+'" '+(r.handoverRequesterConfirmed?'disabled':'')+'>'+(r.handoverRequesterConfirmed?'譲受部署確認済':'受取りを確認')+'</button>';return '<section class="adminItem"><h3>'+esc(x.name)+'　<span class="status '+statusClass(x.status)+'">'+esc(requestState(x,r))+'</span></h3><div class="adminInfo"><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>希望数量</b>'+Number(r.qty||0)+'点</div><div><b>譲渡状況</b>'+esc(x.status)+'</div><div><b>管財課確認</b>'+(requiresKanzai(x)?esc(x.fixedAssetStatus||"管財課確認待ち"):"対象外")+'</div></div><div class="row">'+actions+'</div></section>';}).join("")||'<div class="emptyBox">自分が登録した譲受希望はありません。</div>';
+}
+function renderAdmin(){
+ if(!isAdmin())return;
+ var list=items.filter(function(x){if(adminFilter==="fixed")return requiresKanzai(x);if(adminFilter==="pending")return requiresKanzai(x)&&!fixedApproved(x);if(adminFilter==="all")return true;return x.status===adminFilter;});
+ el("adminList").innerHTML=list.map(function(x){
+  var rs=(x.requests||[]).map(function(r){var key=String(r._key!=null?r._key:r.id),btn=(!r.selected&&(x.status==="募集中"||x.status==="希望受付あり"))?'<div class="row"><button class="btn choose" data-item="'+x.id+'" data-req="'+esc(key)+'">代理で交渉開始</button></div>':"";return '<div class="req"><b>'+esc(r.dept)+'　'+esc(r.person)+'</b>　希望 '+Number(r.qty||0)+'点　【'+esc(requestState(x,r))+'】<br><small>'+esc(r.email||"")+'　'+esc(r.note||"")+'</small>'+btn+'</div>';}).join("")||'<p>譲受希望はありません。</p>';
+  var actions=requiresKanzai(x)?'<button class="btn fixedAssetCheck" data-id="'+x.id+'">固定資産確認</button>':"";
+  if(x.status==="交渉中")actions+='<button class="btn decide" data-id="'+x.id+'">代理で譲渡決定</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>';
+  if(x.status==="譲渡決定"){if(!requiresKanzai(x))actions+='<button class="btn ledger" data-id="'+x.id+'">台帳確認</button>';actions+='<button class="btn complete" data-id="'+x.id+'">管理者引渡完了</button><button class="btn secondary release" data-id="'+x.id+'">譲渡決定を解除</button>';}
+  actions+='<button class="btn danger delete" data-id="'+x.id+'">出品削除</button>';
+  var check=requiresKanzai(x)?esc(x.fixedAssetStatus||"管財課確認待ち"):esc(x.ledgerStatus||"対象外");
+  return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3><div class="adminInfo"><div><b>管理区分</b>'+esc(getManagementType(x))+'</div><div><b>管財課／台帳確認</b>'+check+'</div><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>担当者</b>'+esc(x.person)+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div><div><b>譲渡先</b>'+esc(x.transferDept||"-")+'</div><div><b>双方確認</b>出品 '+(x.handoverSellerConfirmed?"済":"未")+'／譲受 '+(selectedRequest(x)&&selectedRequest(x).handoverRequesterConfirmed?"済":"未")+'</div></div><div class="requests">'+rs+'</div><div class="row">'+actions+'</div></section>';
+ }).join("")||'<div class="emptyBox">該当案件はありません。</div>';
+}
+function accessStatusLabel_(status){return status==="approved"?"承認済み":status==="rejected"?"却下":status==="disabled"?"利用停止":"承認待ち";}
+function accessDate_(value){if(!value)return "-";var d=new Date(Number(value));return isNaN(d.getTime())?String(value):d.toLocaleString("ja-JP");}
+function loadAccessRequests(){
+ if(!isAdmin())return;
+ accessRef.once("value").then(function(snapshot){
+  var raw=snapshot.val()||{};
+  accessRequests=Object.keys(raw).map(function(uid){var r=raw[uid]||{};r._uid=uid;return r;});
+  if(isOpen("adminModal")&&adminFilter==="contractors")renderContractorAdmin();
+ }).catch(function(err){console.error(err);el("adminList").innerHTML='<div class="notice">委託業者申請を読み込めませんでした：'+esc(err.message||err.code||"")+'</div>';});
+}
+function renderContractorAdmin(){
+ if(!isAdmin())return;
+ el("adminList").innerHTML=accessRequests.slice().sort(function(a,b){return Number(b.createdAt||0)-Number(a.createdAt||0);}).map(function(r){
+  var uid=esc(r._uid||r.uid||""),status=accessStatusLabel_(r.status),actions="";
+  if(r.status==="pending")actions='<button class="btn contractorApprove" data-uid="'+uid+'">承認</button><button class="btn secondary contractorReject" data-uid="'+uid+'">却下</button>';
+  if(r.status==="approved")actions='<button class="btn danger contractorDisable" data-uid="'+uid+'">利用停止</button>';
+  return '<section class="adminItem"><h3>'+esc(r.company||"")+'　<span class="status '+(r.status==="approved"?"done":r.status==="pending"?"wait":"")+'">'+esc(status)+'</span></h3><div class="adminInfo"><div><b>担当者</b>'+esc(r.person||"")+'</div><div><b>メール</b>'+esc(r.email||"")+'</div><div><b>関係部署</b>'+esc(r.relatedDept||"")+'</div><div><b>電話</b>'+esc(r.phone||"")+'</div><div><b>利用目的</b>'+esc(r.purpose||"")+'</div><div><b>希望期限</b>'+esc(r.requestedUntil||"-")+'</div><div><b>申請日時</b>'+esc(accessDate_(r.createdAt))+'</div><div><b>承認期限</b>'+esc(accessDate_(r.validUntilAt))+'</div></div><div class="row">'+actions+'</div></section>';
+ }).join("")||'<div class="emptyBox">委託業者の利用申請はありません。</div>';
+}
+function findAccessRequest_(uid){return accessRequests.find(function(r){return String(r._uid||r.uid)===String(uid);});}
+function approveContractor(uid){
+ if(!requireAdmin())return;var r=findAccessRequest_(uid);if(!r)return;
+ var until=Number(r.requestedUntilAt||0);if(!until||until<Date.now()){alert("利用希望期限が過ぎているため承認できません。申請者に再申請を依頼してください。");return;}
+ if(!confirm((r.company||r.email||"この申請")+"を承認しますか？"))return;
+ accessRef.child(String(uid)).update({status:"approved",validUntilAt:until,approvedAt:firebase.database.ServerValue.TIMESTAMP,approvedBy:emailOf(auth.currentUser),rejectionReason:null,disabledAt:null}).then(function(){alert("委託業者を承認しました。申請者は再ログイン後に利用できます。");loadAccessRequests();}).catch(function(err){alert("承認を保存できませんでした："+(err.message||err.code));});
+}
+function rejectContractor(uid){
+ if(!requireAdmin())return;var r=findAccessRequest_(uid);if(!r)return;var reason=prompt("却下理由（任意）","");if(reason===null)return;
+ accessRef.child(String(uid)).update({status:"rejected",rejectionReason:String(reason||""),rejectedAt:firebase.database.ServerValue.TIMESTAMP,rejectedBy:emailOf(auth.currentUser)}).then(function(){alert("申請を却下しました。");loadAccessRequests();}).catch(function(err){alert("却下結果を保存できませんでした："+(err.message||err.code));});
+}
+function disableContractor(uid){
+ if(!requireAdmin())return;var r=findAccessRequest_(uid);if(!r)return;if(!confirm((r.company||r.email||"この利用者")+"の利用を停止しますか？"))return;
+ accessRef.child(String(uid)).update({status:"disabled",disabledAt:firebase.database.ServerValue.TIMESTAMP,disabledBy:emailOf(auth.currentUser)}).then(function(){alert("委託業者の利用を停止しました。");loadAccessRequests();}).catch(function(err){alert("利用停止を保存できませんでした："+(err.message||err.code));});
+}
 
-el("photoInput").addEventListener("change",async function(e){photos=[];var fs=Array.prototype.slice.call(e.target.files,0,5);for(var i=0;i<fs.length;i++){try{photos.push(await resize(fs[i]))}catch(err){}}el("preview").innerHTML=photos.map(function(p){return '<img src="'+p+'">'}).join("")});
-el("newForm").addEventListener("submit",function(e){
+el("newBtn").addEventListener("click",function(){if(!requireStaff())return;photos=[];fixedAssetLabelPhoto="";el("newForm").reset();el("newForm").elements.email.value=auth.currentUser.email||"";el("preview").innerHTML="";el("fixedAssetLabelPreview").innerHTML="";el("fixedAssetLabelArea").style.display="none";open("newModal");});
+ el("deptBtn").addEventListener("click",function(){if(isStaff()){renderDepartment();open("deptModal");return;}if(auth.currentUser&&!isSchoolEmail(auth.currentUser.email)&&isVerifiedAccount(auth.currentUser)){renderContractorAccess();open("contractorModal");return;}open("accountModal");});
+ el("adminBtn").addEventListener("click",function(){if(isAdmin()){adminFilter="fixed";renderAdmin();open("adminModal");return;}el("loginForm").reset();el("loginForm").elements.email.value=ADMIN_EMAIL;open("loginModal");});
+el("googleLoginBtn").addEventListener("click",function(){var p=new firebase.auth.GoogleAuthProvider();p.setCustomParameters({hd:STAFF_DOMAIN,prompt:"select_account"});auth.signInWithPopup(p).then(function(cred){if(!isSchoolEmail(cred.user&&cred.user.email))return auth.signOut().then(function(){throw new Error("school-domain-required");});close("accountModal");}).catch(function(err){console.error(err);alert("Googleログインに失敗しました。HTMLを直接開いている場合は、メールアドレスとパスワードでログインしてください。\n"+(err.message||err.code));});});
+el("openRegisterBtn").addEventListener("click",function(){close("accountModal");el("registerForm").reset();open("registerModal");});
+function authErrorMessage(err,isAdminLogin){
+ var code=String(err&&err.code||"");
+ var messages={
+  "auth/user-not-found":"Firebase Authenticationにこのメールアドレスのユーザーが登録されていません。",
+  "auth/wrong-password":"パスワードが違います。",
+  "auth/invalid-credential":"メールアドレスまたはパスワードが違います。",
+  "auth/invalid-login-credentials":"メールアドレスまたはパスワードが違います。",
+  "auth/email-already-in-use":"このメールアドレスは登録済みです。ログインまたはパスワード再設定を使用してください。",
+  "auth/weak-password":"パスワードは8文字以上で設定してください。",
+  "auth/invalid-email":"メールアドレスの形式を確認してください。",
+  "auth/operation-not-allowed":"Firebase Authenticationの「メール／パスワード」が有効になっていません。",
+  "auth/too-many-requests":"ログイン試行回数が多いため一時停止されています。しばらく待ってください。",
+  "auth/network-request-failed":"ネットワークまたはFirebase SDKへの接続に失敗しました。"
+ };
+ return (isAdminLogin?"管財課管理者":"部署担当者")+"ログインに失敗しました。\n"+(messages[code]||"メールアドレス、パスワード、Firebase Authenticationの登録を確認してください。")+"\n\nエラーコード："+(code||"unknown");
+}
+ el("registerForm").addEventListener("submit",function(e){
  e.preventDefault();
- var f=e.target.elements,id=Date.now();
- var item={id:id,name:f.name.value,category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,
-managementType:f.managementType.value,fixedAssetLabelPhoto:(f.managementType.value==="fixed"?fixedAssetLabelPhoto:""),transferStatus:"募集中",dept:f.dept.value,person:f.person.value,location:f.location.value,deadline:f.deadline.value,size:f.size.value,note:f.note.value,status:"募集中",photos:photos,requests:{}};
- var approx=JSON.stringify(item).length;
- if(approx>3500000){alert("写真データが大きすぎます。写真枚数を減らすか、より小さい画像を使用してください。");return;}
- itemsRef.child(String(id)).set(item).then(function(){
-   e.target.reset();photos=[];fixedAssetLabelPhoto="";if(el("fixedAssetLabelPreview"))el("fixedAssetLabelPreview").innerHTML="";if(el("fixedAssetLabelArea"))el("fixedAssetLabelArea").style.display="none";close("newModal");alert("備品を登録しました。");
- }).catch(function(err){console.error(err);alert("備品を登録できませんでした："+(err.message||err.code));});
+ var form=e.target,email=form.elements.email.value.trim().toLowerCase(),pw=form.elements.password.value,pw2=form.elements.passwordConfirm.value,button=el("registerSubmitBtn");
+  if(!isValidEmail(email)){alert("受信できるメールアドレスを入力してください。");return;}
+ if(pw.length<8){alert("備品REUSE専用パスワードは8文字以上で設定してください。");return;}
+ if(pw!==pw2){alert("確認用パスワードが一致しません。");return;}
+ button.disabled=true;button.textContent="登録中...";auth.languageCode="ja";
+ auth.createUserWithEmailAndPassword(email,pw).then(function(cred){
+  return cred.user.sendEmailVerification().then(function(){return auth.signOut();});
+ }).then(function(){close("registerModal");open("accountModal");alert(email+" 宛てに本人確認メールを送信しました。\n\nメール内のリンクを開いた後、この画面からログインしてください。\n迷惑メールフォルダも確認してください。");}).catch(function(err){console.error(err);auth.signOut().catch(function(){});alert("新規利用登録ができませんでした。\n"+(authErrorMessage(err,false)));}).finally(function(){button.disabled=false;button.textContent="登録して確認メールを送信";});
+});
+ el("staffLoginForm").addEventListener("submit",function(e){e.preventDefault();var email=e.target.elements.email.value.trim(),pw=e.target.elements.password.value;if(!isValidEmail(email)){alert("メールアドレスの形式を確認してください。");return;}auth.signInWithEmailAndPassword(email,pw).then(function(cred){if(!cred.user.emailVerified&&emailOf(cred.user)!==ADMIN_EMAIL){auth.languageCode="ja";return cred.user.sendEmailVerification().then(function(){return auth.signOut();}).then(function(){alert("本人確認が完了していません。\n"+email+" 宛てに確認メールを再送しました。\nメール内のリンクを開いてから、もう一度ログインしてください。");});}close("accountModal");}).catch(function(err){console.error(err);alert(authErrorMessage(err,false));});});
+el("loginForm").addEventListener("submit",function(e){e.preventDefault();var email=e.target.elements.email.value.trim(),pw=e.target.elements.password.value;auth.signInWithEmailAndPassword(email,pw).then(function(cred){if(!cred.user||emailOf(cred.user)!==ADMIN_EMAIL)return auth.signOut().then(function(){throw new Error("not-admin");});adminFilter="fixed";close("loginModal");renderAdmin();open("adminModal");}).catch(function(err){console.error(err);alert(authErrorMessage(err,true));});});
+Array.prototype.forEach.call(document.querySelectorAll(".resetPassword"),function(button){
+ button.addEventListener("click",function(){
+  var form=el(button.dataset.form),email=String(form&&form.elements.email.value||"").trim();
+   if(!isValidEmail(email)){alert("再設定メールを送るメールアドレスを入力してください。");return;}
+  button.disabled=true;button.textContent="送信中...";auth.languageCode="ja";
+  auth.sendPasswordResetEmail(email).then(function(){alert(email+" 宛てにパスワード再設定メールを送信しました。\n迷惑メールフォルダも確認してください。");}).catch(function(err){console.error(err);alert("再設定メールを送信できませんでした。\nエラーコード："+(err.code||"unknown")+"\n"+(err.message||""));}).finally(function(){button.disabled=false;button.textContent="パスワード再設定メール";});
+ });
+ });
+el("contractorForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ var u=auth.currentUser,f=e.target.elements,until=String(f.requestedUntil.value||"");
+ if(!u||isSchoolEmail(u.email)||!isVerifiedAccount(u)){alert("本人確認済みの委託業者アカウントで申請してください。");return;}
+ var untilAt=new Date(until+"T23:59:59+09:00").getTime();
+ if(!until||!Number.isFinite(untilAt)||untilAt<Date.now()){alert("利用希望期限は今日以降の日付を入力してください。");return;}
+ var button=el("contractorSubmitBtn");button.disabled=true;button.textContent="送信中...";
+ var request={uid:u.uid,email:emailOf(u),company:String(f.company.value||"").trim(),person:String(f.person.value||"").trim(),relatedDept:String(f.relatedDept.value||"").trim(),phone:String(f.phone.value||"").trim(),purpose:String(f.purpose.value||"").trim(),requestedUntil:until,requestedUntilAt:untilAt,status:"pending",createdAt:firebase.database.ServerValue.TIMESTAMP};
+ accessRef.child(u.uid).set(request).then(function(){contractorAccess=request;updateAuthUi();renderContractorAccess();alert("管財課へ利用申請を送信しました。承認メールをお待ちください。");}).catch(function(err){console.error(err);alert("利用申請を送信できませんでした："+(err.message||err.code));}).finally(function(){button.disabled=false;button.textContent="管財課へ申請";});
+});
+el("contractorLogoutBtn").addEventListener("click",function(){logout();});
+ function logout(){stopDatabase();contractorAccess=null;updateAuthUi();return auth.signOut().then(function(){close("adminModal");close("deptModal");close("contractorModal");alert("ログアウトしました。");}).catch(function(err){alert("ログアウトに失敗しました："+(err.message||err.code));});}
+el("staffLogoutBtn").addEventListener("click",logout);el("adminLogoutBtn").addEventListener("click",logout);
+el("adminHelpBtn").addEventListener("click",function(e){e.preventDefault();open("adminHelpModal");});
+
+document.addEventListener("click",function(e){
+ var t=e.target;if(t.classList.contains("close")){var o=t.closest(".overlay");if(o)close(o.id);}
+ if(t.classList.contains("detail"))showDetail(Number(t.dataset.id));
+ if(t.classList.contains("request")){if(!requireStaff())return;close("detailModal");var id=Number(t.dataset.id),x=items.find(function(i){return i.id===id;});if(!x)return;var f=el("requestForm").elements;f.itemId.value=id;f.qty.max=x.qty;f.email.value=auth.currentUser.email||"";open("requestModal");}
+ if(t.dataset.af!==undefined){adminFilter=t.dataset.af;if(adminFilter==="contractors"){renderContractorAdmin();loadAccessRequests();}else renderAdmin();}
+ if(t.classList.contains("contractorApprove"))approveContractor(String(t.dataset.uid));
+ if(t.classList.contains("contractorReject"))rejectContractor(String(t.dataset.uid));
+ if(t.classList.contains("contractorDisable"))disableContractor(String(t.dataset.uid));
+ if(t.classList.contains("choose"))choose(Number(t.dataset.item),String(t.dataset.req));
+ if(t.classList.contains("decide"))decide(Number(t.dataset.id));
+ if(t.classList.contains("fixedAssetCheck"))fixedAssetCheck(Number(t.dataset.id));
+ if(t.classList.contains("ledger"))ledger(Number(t.dataset.id));
+ if(t.id==="fixedAssetSaveBtn")saveFixedAssetCheck();
+ if(t.classList.contains("complete"))complete(Number(t.dataset.id));
+ if(t.classList.contains("release"))release(Number(t.dataset.id));
+ if(t.classList.contains("delete"))removeItem(Number(t.dataset.id));
+ if(t.classList.contains("sellerConfirm"))sellerConfirmHandover(Number(t.dataset.id));
+ if(t.classList.contains("requesterConfirm"))requesterConfirmHandover(Number(t.dataset.id),String(t.dataset.req));
+});
+
+el("newForm").elements.managementType.addEventListener("change",function(){var needed=this.value==="fixed"||this.value==="unknown";el("fixedAssetLabelArea").style.display=needed?"block":"none";if(!needed){fixedAssetLabelPhoto="";el("fixedAssetLabelPreview").innerHTML="";}});
+el("fixedAssetLabelInput").addEventListener("change",async function(e){var f=e.target.files[0];if(!f)return;try{fixedAssetLabelPhoto=await resize(f);el("fixedAssetLabelPreview").innerHTML='<img src="'+fixedAssetLabelPhoto+'">';}catch(err){alert("備品シール写真を読み込めませんでした。");}});
+el("photoInput").addEventListener("change",async function(e){photos=[];var fs=Array.prototype.slice.call(e.target.files,0,5);for(var i=0;i<fs.length;i++){try{photos.push(await resize(fs[i]));}catch(err){}}el("preview").innerHTML=photos.map(function(p){return '<img src="'+p+'">';}).join("");});
+
+el("newForm").addEventListener("submit",function(e){
+ e.preventDefault();if(!requireStaff())return;var f=e.target.elements,id=Date.now(),managed=f.managementType.value==="fixed"||f.managementType.value==="unknown";
+ if(managed&&!fixedAssetLabelPhoto){alert("固定資産・判断不明の備品は、備品シール写真を添付してください。");return;}
+ var item={id:id,ownerUid:auth.currentUser.uid,ownerEmail:emailOf(auth.currentUser),name:f.name.value.trim(),category:f.category.value,qty:Number(f.qty.value),condition:f.condition.value,managementType:f.managementType.value,fixedAssetLabelPhoto:managed?fixedAssetLabelPhoto:"",fixedAssetStatus:managed?"管財課確認待ち":"対象外",transferStatus:managed?"管財課確認待ち":"募集中",dept:f.dept.value.trim(),person:f.person.value.trim(),email:auth.currentUser.email||"",location:f.location.value.trim(),deadline:f.deadline.value,size:f.size.value.trim(),note:f.note.value.trim(),status:"募集中",photos:photos,requests:{},createdAt:firebase.database.ServerValue.TIMESTAMP,handoverSellerConfirmed:false};
+ if(managed)item.kanzaiRegistrationMailSent=false;
+ if(JSON.stringify(item).length>3500000){alert("写真データが大きすぎます。写真枚数を減らしてください。");return;}
+ itemsRef.child(String(id)).set(item).then(function(){e.target.reset();e.target.elements.email.value=auth.currentUser.email||"";photos=[];fixedAssetLabelPhoto="";el("preview").innerHTML="";el("fixedAssetLabelPreview").innerHTML="";el("fixedAssetLabelArea").style.display="none";close("newModal");alert(managed?"登録しました。管財課へ確認通知が送られます。":"一般備品として登録しました。以後は部署間で進められます。");}).catch(function(err){console.error(err);alert("備品を登録できませんでした："+(err.message||err.code));});
 });
 el("requestForm").addEventListener("submit",function(e){
- e.preventDefault();
- var f=e.target.elements,itemId=Number(f.itemId.value),rid=Date.now();
- var target=items.find(function(x){return x.id===itemId});
- var rq=Number(f.qty.value);
- if(!target){alert("対象備品が見つかりません。画面を再読み込みしてください。");return;}
- if(!Number.isFinite(rq) || rq<1 || rq>Number(target.qty||1)){alert("希望数量は1～"+Number(target.qty||1)+"の範囲で入力してください。");return;}
- var existingReqs=Array.isArray(target.requests)?target.requests:[];
- var sameDept=existingReqs.some(function(r){return String(r.dept||"").trim()===String(f.dept.value||"").trim();});
- if(sameDept && !confirm("同じ部署から既に譲受希望が登録されています。追加で登録しますか？"))return;
- var req={id:rid,dept:f.dept.value,person:f.person.value,qty:rq,note:f.note.value,date:new Date().toLocaleDateString("ja-JP"),selected:false};
- itemsRef.child(String(itemId)).child("requests").child(String(rid)).set(req).then(function(){
-   var nextStatus = (target.managementType==="fixed") ? "管財課確認中" : "出品部署確認中";
-   return itemsRef.child(String(itemId)).child("transferStatus").set(nextStatus).then(function(){
-     e.target.reset();close("requestModal");
-     if(target.managementType==="fixed"){
-       alert("譲受希望を登録しました。固定資産・管理対象のため管財課で確認します。");
-     }else{
-       alert("譲受希望を登録しました。出品部署で確認してください。");
-     }
-   });
- }).catch(function(err){console.error(err);alert("譲受希望を登録できませんでした："+(err.message||err.code));});
+ e.preventDefault();if(!requireStaff())return;var f=e.target.elements,itemId=Number(f.itemId.value),rid=Date.now(),target=items.find(function(x){return x.id===itemId;}),rq=Number(f.qty.value);
+ if(!target){alert("対象備品が見つかりません。");return;}if(isItemOwner(target)){alert("自分の出品には譲受希望を登録できません。");return;}if(!Number.isFinite(rq)||rq<1||rq>Number(target.qty||1)){alert("希望数量は1～"+Number(target.qty||1)+"の範囲で入力してください。");return;}
+ var same=(target.requests||[]).some(function(r){return isRequestOwner(r);});if(same&&!confirm("この備品には既に自分の譲受希望があります。追加で登録しますか？"))return;
+ var req={id:rid,requesterUid:auth.currentUser.uid,dept:f.dept.value.trim(),person:f.person.value.trim(),email:auth.currentUser.email||"",qty:rq,note:f.note.value.trim(),date:new Date().toLocaleDateString("ja-JP"),createdAt:firebase.database.ServerValue.TIMESTAMP,selected:false,mailSent:false,handoverRequesterConfirmed:false};
+ var next=requiresKanzai(target)?"管財課確認・出品部署確認中":"出品部署確認中";
+ itemsRef.child(String(itemId)).child("requests").child(String(rid)).set(req).then(function(){return itemsRef.child(String(itemId)).update({status:"希望受付あり",transferStatus:next});}).then(function(){e.target.reset();e.target.elements.email.value=auth.currentUser.email||"";close("requestModal");alert("譲受希望を登録しました。出品担当者へメール通知されます。");}).catch(function(err){console.error(err);alert("譲受希望を登録できませんでした："+(err.message||err.code));});
 });
-el("loginForm").addEventListener("submit",function(e){
- e.preventDefault();
- var email=e.target.elements.email.value.trim();
- var pw=e.target.elements.password.value;
- auth.signInWithEmailAndPassword(email,pw).then(function(cred){
-   if(!cred.user || cred.user.email!==ADMIN_EMAIL){
-     return auth.signOut().then(function(){throw new Error("not-admin");});
-   }
-   adminFilter="";
-   renderAdmin();
-   close("loginModal");
-   open("adminModal");
- }).catch(function(err){
-   console.error("Admin auth error:",err);
-   alert("管理者ログインに失敗しました。メールアドレスまたはパスワードを確認してください。");
- });
-});
-function renderAdmin(){var list=items.filter(function(x){return!adminFilter||x.status===adminFilter});el("adminList").innerHTML=list.map(function(x){var rs=(x.requests||[]).map(function(r){
- var applicantState="";
- if(r.selected && x.status==="交渉中") applicantState="【交渉中】";
- else if(r.selected && x.status==="譲渡決定") applicantState="【譲渡決定】";
- else if(r.selected && x.status==="引渡済") applicantState="【引渡済】";
- else if(!r.selected && x.status==="引渡済") applicantState="【受付終了】";
- else if(x.status==="交渉中" || x.status==="譲渡決定") applicantState="【希望者・保留】";
- else applicantState="【希望受付】";
- var chooseBtn=(!r.selected && (x.status==="募集中" || x.status==="希望受付あり"))
-   ?'<div class="row"><button class="btn choose" data-item="'+x.id+'" data-req="'+esc(r._key!=null?r._key:r.id)+'">この部署と交渉開始</button></div>'
-   :"";
- return '<div class="req"><b>'+esc(r.dept)+'　'+esc(r.person)+'</b>　希望 '+r.qty+'点　'+applicantState+'<br><small>申請：'+esc(r.date)+'　'+esc(r.note||"")+'</small>'+chooseBtn+'</div>'
-}).join("")||'<p>譲受希望はありません。</p>';return '<section class="adminItem"><h3>'+esc(x.name)+' × '+x.qty+'　<span class="status '+statusClass(x.status)+'">'+esc(x.status)+'</span></h3><div class="adminInfo"><div><b>出品部署</b>'+esc(x.dept)+'</div><div><b>担当者</b>'+esc(x.person)+'</div><div><b>設置場所</b>'+esc(x.location)+'</div><div><b>希望件数</b>'+(x.requests||[]).length+'件</div><div><b>備品台帳・固定資産</b>'+esc(x.ledgerStatus||"未確認")+'</div><div><b>譲渡先部署</b>'+esc(x.transferDept||"-")+'</div><div><b>譲渡先担当者</b>'+esc(x.transferPerson||"-")+'</div></div><div class="requests">'+rs+'</div><div class="row">'+(x.status==="交渉中"?'<button class="btn decide" data-id="'+x.id+'">譲渡決定</button><button class="btn secondary release" data-id="'+x.id+'">交渉解除</button>':"")+(x.status==="譲渡決定"?'<button class="btn ledger" data-id="'+x.id+'">台帳確認</button><button class="btn complete" data-id="'+x.id+'">引渡完了</button><button class="btn secondary release" data-id="'+x.id+'">譲渡決定を解除</button>':"")+'<button class="btn danger delete" data-id="'+x.id+'">出品削除</button></div></section>'}).join("")||"<p>該当案件はありません。</p>"}
+
 function choose(i,rkey){
- if(!requireAdmin())return;
- if(!confirm("この部署を交渉先として選択しますか？"))return;
- var x=items.find(function(a){return a.id===i}); if(!x)return;
- var updates={status:"交渉中"};
- (x.requests||[]).forEach(function(a){
-   var key=String(a._key!=null?a._key:a.id);
-   updates["requests/"+key+"/selected"]=(key===String(rkey));
- });
- itemsRef.child(String(i)).update(updates).catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+ if(!requireStaff())return;var x=items.find(function(a){return a.id===i;});if(!x||!canManage(x)){alert("この出品を操作できるのは出品担当者と管財課です。");return;}if(!confirm("この部署と交渉を開始しますか？"))return;
+ var updates={status:"交渉中",transferStatus:requiresKanzai(x)?"管財課確認・交渉中":"交渉中"};
+ (x.requests||[]).forEach(function(r){var key=String(r._key!=null?r._key:r.id),selected=key===String(rkey);updates["requests/"+key+"/selected"]=selected;if(selected)updates["requests/"+key+"/releaseNoticePending"]=false;});
+ itemsRef.child(String(i)).update(updates).catch(function(err){alert("交渉開始を保存できませんでした："+(err.message||err.code));});
 }
 function decide(i){
- if(!requireAdmin())return;
- var x=items.find(function(a){return a.id===i});
- if(!x)return;
- var selected=(x.requests||[]).find(function(r){return r.selected;});
- if(!selected){alert("譲渡決定する希望者を選択してください。");return;}
- if(!confirm(selected.dept+" へ譲渡決定しますか？"))return;
- itemsRef.child(String(i)).update({
-   status:"譲渡決定",
-   transferStatus:"譲渡決定",
-   transferDept:selected.dept||"",
-   transferPerson:selected.person||""
- }).catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+ if(!requireStaff())return;var x=items.find(function(a){return a.id===i;});if(!x||!canManage(x)){alert("この出品を操作できません。");return;}var selected=selectedRequest(x),key=selectedRequestKey(x);if(!selected){alert("先に交渉する部署を選択してください。");return;}if(requiresKanzai(x)&&!fixedApproved(x)){alert("固定資産・判断不明の備品は、管財課が「承認」にするまで譲渡決定できません。");return;}if(!confirm(selected.dept+" へ譲渡決定しますか？"))return;
+ var updates={status:"譲渡決定",transferStatus:"譲渡決定",transferDept:selected.dept||"",transferPerson:selected.person||"",handoverSellerConfirmed:false};updates["requests/"+key+"/handoverRequesterConfirmed"]=false;
+ itemsRef.child(String(i)).update(updates).catch(function(err){alert("譲渡決定を保存できませんでした："+(err.message||err.code));});
 }
-function ledger(i){
- if(!requireAdmin())return;
- var x=items.find(function(a){return a.id===i}); if(!x)return;
- var ans=prompt("備品台帳・固定資産の確認結果を入力してください。\n\n1：台帳変更不要\n2：台帳変更必要・処理済\n3：確認中\n\n数字を入力してください。", x.ledgerStatus==="台帳変更不要"?"1":x.ledgerStatus==="台帳変更必要・処理済"?"2":"3");
- if(ans===null)return;
- var val=ans==="1"?"台帳変更不要":ans==="2"?"台帳変更必要・処理済":ans==="3"?"確認中":"";
- if(!val){alert("1、2、3のいずれかを入力してください。");return;}
- itemsRef.child(String(i)).child("ledgerStatus").set(val).catch(function(err){alert("台帳確認結果を保存できませんでした："+(err.message||err.code));});
+function sellerConfirmHandover(i){
+ if(!requireStaff())return;var x=items.find(function(a){return a.id===i;});if(!x||!canManage(x)){alert("この出品を操作できません。");return;}if(x.status!=="譲渡決定"){alert("譲渡決定後に確認してください。");return;}if(requiresKanzai(x)&&!fixedApproved(x)){alert("管財課の承認が必要です。");return;}if(!confirm("備品を譲受部署へ引き渡しましたか？"))return;
+ var selected=selectedRequest(x),updates={handoverSellerConfirmed:true,transferStatus:"出品部署引渡確認済み"};if(selected&&selected.handoverRequesterConfirmed){updates.status="引渡済";updates.transferStatus="引渡済";}
+ itemsRef.child(String(i)).update(updates).then(function(){alert(selected&&selected.handoverRequesterConfirmed?"双方の確認がそろい、引渡済になりました。":"出品部署の引渡確認を保存しました。譲受部署の確認を待ちます。");}).catch(function(err){alert("引渡確認を保存できませんでした："+(err.message||err.code));});
 }
-function complete(i){
- if(!requireAdmin())return;
- var x=items.find(function(a){return a.id===i}); if(!x)return;
- if(x.ledgerStatus!=="台帳変更不要" && x.ledgerStatus!=="台帳変更必要・処理済"){
-   alert("引渡完了にする前に「台帳確認」を行ってください。\n台帳変更不要、または台帳変更必要・処理済の確認が必要です。");
-   return;
- }
- if(!confirm("実際の引渡しが完了していますか？\n完了している場合のみ「OK」を押してください。"))return;
- itemsRef.child(String(i)).child("status").set("引渡済").catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+function requesterConfirmHandover(i,rkey){
+ if(!requireStaff())return;var x=items.find(function(a){return a.id===i;});if(!x)return;var r=(x.requests||[]).find(function(a){return String(a._key!=null?a._key:a.id)===String(rkey);});if(!r||!isRequestOwner(r)||!r.selected){alert("この譲受希望を操作できません。");return;}if(!confirm("備品を受け取りましたか？"))return;
+ itemsRef.child(String(i)).child("requests").child(String(rkey)).update({handoverRequesterConfirmed:true,handoverMailSent:false}).then(function(){alert(x.handoverSellerConfirmed?"確認を保存しました。次回の通知処理で引渡済になります。":"譲受部署の受取確認を保存しました。出品部署の確認を待ちます。");}).catch(function(err){alert("受取確認を保存できませんでした："+(err.message||err.code));});
 }
 function release(i){
- if(!requireAdmin())return;
- if(!confirm("交渉を解除して希望受付へ戻しますか？"))return;
- var x=items.find(function(a){return a.id===i}); if(!x)return;
- var updates={status:"募集中"};
- (x.requests||[]).forEach(function(a){
-   var key=String(a._key!=null?a._key:a.id);
-   updates["requests/"+key+"/selected"]=false;
- });
- itemsRef.child(String(i)).update(updates).catch(function(err){alert("管理操作を保存できませんでした："+(err.message||err.code));});
+ if(!requireStaff())return;var x=items.find(function(a){return a.id===i;});if(!x||!canManage(x)){alert("この出品を操作できません。");return;}if(!confirm("交渉・譲渡決定を解除して希望受付へ戻しますか？"))return;
+ var updates={status:(x.requests||[]).length?"希望受付あり":"募集中",transferStatus:"出品部署確認中",transferDept:null,transferPerson:null,handoverSellerConfirmed:false};(x.requests||[]).forEach(function(r){var key=String(r._key!=null?r._key:r.id);if(r.selected)updates["requests/"+key+"/releaseNoticePending"]=true;updates["requests/"+key+"/selected"]=false;updates["requests/"+key+"/handoverRequesterConfirmed"]=false;});itemsRef.child(String(i)).update(updates).catch(function(err){alert("解除を保存できませんでした："+(err.message||err.code));});
 }
-function removeItem(i){
- if(!requireAdmin())return;
- if(!confirm("この出品を削除しますか？"))return;
- itemsRef.child(String(i)).remove().catch(function(err){alert("出品を削除できませんでした："+(err.message||err.code));});
-}
-["search","category","statusFilter"].forEach(function(id){el(id).addEventListener(id==="search"?"input":"change",render)});
-
-/* 管理者ログアウト：必ずこのアプリ本体のスコープ内で登録する */
-var adminHelpBtn=el("adminHelpBtn");
-if(adminHelpBtn){adminHelpBtn.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();open("adminHelpModal");});}
-var logoutBtn=el("adminLogoutBtn");
-if(logoutBtn){
- logoutBtn.addEventListener("click",async function(e){
-   e.preventDefault();
-   e.stopPropagation();
-   var b=this;
-   try{
-     b.disabled=true;
-     b.textContent="ログアウト中...";
-     /* 管理者トークンで接続中のDB監視を一度完全に解除 */
-     itemsRef.off("value");
-     dbListenerStarted=false;
-
-     await auth.signOut();
-     var cred=await auth.signInAnonymously();
-     await cred.user.getIdToken(true);
-
-     /* 匿名認証トークン確定後にDB監視を張り直す */
-     startDatabase(cred.user);
-
-     close("adminModal");
-     alert("管理者ログアウトしました。一般利用モードに戻りました。");
-   }catch(err){
-     console.error("Logout error:",err);
-     alert("管理者ログアウトに失敗しました："+(err.message||err.code||"不明なエラー"));
-   }finally{
-     b.disabled=false;
-     b.textContent="管理者ログアウト";
-   }
- });
-}
-render();
+function removeItem(i){if(!requireStaff())return;var x=items.find(function(a){return a.id===i;});if(!x||!canManage(x)){alert("この出品を削除できません。");return;}if(!confirm("この出品を削除しますか？この操作は元に戻せません。"))return;itemsRef.child(String(i)).remove().then(function(){alert("出品を削除しました。");}).catch(function(err){alert("出品を削除できませんでした："+(err.message||err.code));});}
+function ledger(i){if(!requireAdmin())return;var x=items.find(function(a){return a.id===i;});if(!x)return;if(requiresKanzai(x)){alert("固定資産等は「固定資産確認」を使用してください。");return;}var ans=prompt("一般備品の台帳確認結果\n1：台帳変更不要\n2：台帳変更必要・処理済\n3：確認中",x.ledgerStatus==="台帳変更不要"?"1":x.ledgerStatus==="台帳変更必要・処理済"?"2":"3");if(ans===null)return;var val=ans==="1"?"台帳変更不要":ans==="2"?"台帳変更必要・処理済":ans==="3"?"確認中":"";if(!val){alert("1、2、3のいずれかを入力してください。");return;}itemsRef.child(String(i)).child("ledgerStatus").set(val).catch(function(err){alert("台帳確認を保存できませんでした："+(err.message||err.code));});}
+function fixedAssetCheck(i){if(!requireAdmin())return;var x=items.find(function(a){return a.id===i;});if(!x||!requiresKanzai(x)){alert("固定資産確認の対象ではありません。");return;}fixedAssetTargetId=i;var status=fixedApproved(x)?"承認":x.fixedAssetStatus==="差戻し"?"差戻し":"管財課確認待ち";el("fixedAssetResult").value=status;var photo=x.fixedAssetLabelPhoto?'<div class="preview"><img src="'+esc(x.fixedAssetLabelPhoto)+'" onclick="window.reusePhotoOpen(this.src);event.stopPropagation();" title="クリックして拡大"></div>':'<div class="notice">備品シール写真がありません。差戻しを選択してください。</div>';el("fixedAssetContent").innerHTML='<p><b>品名：</b>'+esc(x.name)+'<br><b>管理区分：</b>'+esc(getManagementType(x))+'<br><b>出品部署：</b>'+esc(x.dept)+'<br><b>設置場所：</b>'+esc(x.location)+'</p><p><b>備品シール写真</b></p>'+photo;open("fixedAssetModal");}
+function saveFixedAssetCheck(){if(!requireAdmin())return;var i=fixedAssetTargetId,x=items.find(function(a){return a.id===i;});if(!x||!requiresKanzai(x)){alert("対象データが見つかりません。");return;}var val=el("fixedAssetResult").value;itemsRef.child(String(i)).update({fixedAssetStatus:val,fixedAssetStatusNotifiedValue:null,transferStatus:val==="承認"?"管財課承認済み":val}).then(function(){close("fixedAssetModal");fixedAssetTargetId=null;alert("管財課の確認結果を保存しました。関係部署へメール通知されます。");}).catch(function(err){alert("確認結果を保存できませんでした："+(err.message||err.code));});}
+function complete(i){if(!requireAdmin())return;var x=items.find(function(a){return a.id===i;});if(!x)return;if(requiresKanzai(x)&&!fixedApproved(x)){alert("管財課承認が必要です。");return;}if(!confirm("管理者権限で引渡済にしますか？"))return;itemsRef.child(String(i)).update({status:"引渡済",transferStatus:"引渡済"}).catch(function(err){alert("完了を保存できませんでした："+(err.message||err.code));});}
+["search","category","statusFilter"].forEach(function(id){el(id).addEventListener(id==="search"?"input":"change",render);});
+updateAuthUi();render();
 })();
 
 </script>
